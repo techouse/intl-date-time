@@ -58,8 +58,7 @@
 
         data() {
             return {
-                flatpickr: null,
-                locales:   locales
+                flatpickr: null
             }
         },
 

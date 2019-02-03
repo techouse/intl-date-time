@@ -106,21 +106,21 @@ The __63__ locales that are _currently supported_ are:
 | Czech                         | `cs`    |
 | Danish                        | `da`    |
 | Dutch                         | `nl`    |
+| English                       | `en`    |
 | English (Australia)           | `en-au` |
 | English (Canada)              | `en-ca` |
 | English (Ireland)             | `en-ie` |
 | English (New Zealand)         | `en-nz` |
 | English (United Kingdom)      | `en-gb` |
-| English                       | `en`    |
 | Esperanto                     | `eo`    |
 | Estonian                      | `et`    |
 | Finnish                       | `fi`    |
+| French                        | `fr`    |
 | French (Canada)               | `fr-ca` |
 | French (Switzerland)          | `fr-ch` |
-| French                        | `fr`    |
+| German                        | `de`    |
 | German (Austria)              | `de-at` |
 | German (Switzerland)          | `de-ch` |
-| German                        | `de`    |
 | Greek                         | `el`    |
 | Hebrew                        | `he`    |
 | Hindi                         | `hi`    |
@@ -146,9 +146,9 @@ The __63__ locales that are _currently supported_ are:
 | Sinhala                       | `si`    |
 | Slovak                        | `sk`    |
 | Slovenian                     | `sl`    |
-| Spanish (Dominican Republic)  | `es-do` |
-| Spanish(United States)        | `es-us` |
 | Spanish                       | `es`    |
+| Spanish (Dominican Republic)  | `es-do` |
+| Spanish (United States)       | `es-us` |
 | Swedish                       | `sv`    |
 | Thai                          | `th`    |
 | Turkish                       | `tr`    |

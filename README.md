@@ -31,7 +31,6 @@ Simply use `IntlDateTime` class instead of `DateTime` directly or alias it like 
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\{ID, Password, Select, Text};
 use Techouse\IntlDateTime\IntlDateTime as DateTime;
 
 class User extends Resource

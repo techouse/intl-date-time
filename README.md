@@ -5,7 +5,7 @@
 
 ##### International datepicker for Laravel Nova
 
-Apply localisation to Laravel Nova's default `DateTime` field that currently doesn't support localisation out of the box.
+Apply localisation in __63__ different locales to Laravel Nova's default `DateTime` field that currently doesn't support localisation out of the box.
 
 ![International DateTime](./screenshot.png)
 
@@ -86,73 +86,75 @@ class User extends Resource
 
 ## List of supported locales
 
-Only module supports only locales that are __SUPPORTED BY BOTH__ [MomentJS](https://github.com/tqc/moment/tree/develop/src/locale) __AND__ [Flatpickr](https://github.com/flatpickr/flatpickr/tree/master/src/l10n)!
+Only module supports only locales that are __SUPPORTED BY BOTH__ [MomentJS](https://github.com/tqc/moment/tree/no-dynamic-import/src/locale) __AND__ [Flatpickr](https://github.com/flatpickr/flatpickr/tree/master/src/l10n)!
 
-Here is a convenient list of these locales:
+The __63__ locales that are _currently supported_ are:
 
-* Albanian: `sq`
-* Arabic: `ar`
-* Bangla: `bn`
-* Belarusian: `be`
-* Bulgarian: `bg`
-* Burmese: `my`
-* Catalan: `ca`
-* Chinese (China): `zh-cn`
-* Chinese (Hong Kong): `zh-hk`
-* Chinese (Taiwan): `zh-tw`
-* Croatian: `hr` 
-* Czech: `cs`
-* Danish: `da`
-* Dutch: `nl`
-* English (Australia): `en-au`
-* English (Canada): `en-ca`
-* English (Ireland): `en-ie`
-* English (New Zealand): `en-nz`
-* English (United Kingdom): `en-gb`
-* English: `en`
-* Esperanto: `eo`
-* Estonian: `et`
-* Finnish: `fi`
-* French (Canada): `fr-ca`
-* French (Switzerland): `fr-ch`
-* French: `fr`
-* German (Austria): `de-at`
-* German (Switzerland): `de-ch`
-* German: `de`
-* Greek: `el`
-* Hebrew: `he`
-* Hindi: `hi`
-* Hungarian: `hu`
-* Indonesian: `id`
-* Italian: `it`
-* Japanese: `ja`
-* Kazakh: `kk`
-* Khmer: `km`
-* Korean: `ko`
-* Latvian: `lv`
-* Lithuanian: `lt`
-* Macedonian: `mk`
-* Malaysian: `ms`
-* Norwegian: `nb`
-* Persian: `fa`
-* Polish: `pl`
-* Portuguese: `pt`
-* Punjabi: `pa-in`
-* Romanian: `ro`
-* Russian: `ru`
-* Serbian: `sr`
-* Sinhala: `si`
-* Slovak: `sk`
-* Slovenian: `sl`
-* Spanish (Dominican Republic): `es-do`
-* Spanish(United States): `es-us`
-* Spanish: `es`
-* Swedish: `sv`
-* Thai: `th`
-* Turkish: `tr`
-* Ukrainian: `uk`
-* Vietnamese: `vi`
-* Welsh: `cy`
+| Language                      | locale  |
+| :---                          | :---:   |
+| Albanian                      | `sq`    |
+| Arabic                        | `ar`    |
+| Bangla                        | `bn`    |
+| Belarusian                    | `be`    |
+| Bulgarian                     | `bg`    |
+| Burmese                       | `my`    |
+| Catalan                       | `ca`    |
+| Chinese (China)               | `zh-cn` |
+| Chinese (Hong Kong)           | `zh-hk` |
+| Chinese (Taiwan)              | `zh-tw` |
+| Croatian                      | `hr`    | 
+| Czech                         | `cs`    |
+| Danish                        | `da`    |
+| Dutch                         | `nl`    |
+| English (Australia)           | `en-au` |
+| English (Canada)              | `en-ca` |
+| English (Ireland)             | `en-ie` |
+| English (New Zealand)         | `en-nz` |
+| English (United Kingdom)      | `en-gb` |
+| English                       | `en`    |
+| Esperanto                     | `eo`    |
+| Estonian                      | `et`    |
+| Finnish                       | `fi`    |
+| French (Canada)               | `fr-ca` |
+| French (Switzerland)          | `fr-ch` |
+| French                        | `fr`    |
+| German (Austria)              | `de-at` |
+| German (Switzerland)          | `de-ch` |
+| German                        | `de`    |
+| Greek                         | `el`    |
+| Hebrew                        | `he`    |
+| Hindi                         | `hi`    |
+| Hungarian                     | `hu`    |
+| Indonesian                    | `id`    |
+| Italian                       | `it`    |
+| Japanese                      | `ja`    |
+| Kazakh                        | `kk`    |
+| Khmer                         | `km`    |
+| Korean                        | `ko`    |
+| Latvian                       | `lv`    |
+| Lithuanian                    | `lt`    |
+| Macedonian                    | `mk`    |
+| Malaysian                     | `ms`    |
+| Norwegian                     | `nb`    |
+| Persian                       | `fa`    |
+| Polish                        | `pl`    |
+| Portuguese                    | `pt`    |
+| Punjabi                       | `pa-in` |
+| Romanian                      | `ro`    |
+| Russian                       | `ru`    |
+| Serbian                       | `sr`    |
+| Sinhala                       | `si`    |
+| Slovak                        | `sk`    |
+| Slovenian                     | `sl`    |
+| Spanish (Dominican Republic)  | `es-do` |
+| Spanish(United States)        | `es-us` |
+| Spanish                       | `es`    |
+| Swedish                       | `sv`    |
+| Thai                          | `th`    |
+| Turkish                       | `tr`    |
+| Ukrainian                     | `uk`    |
+| Vietnamese                    | `vi`    |
+| Welsh                         | `cy`    |
 
 ##### NOTE
 This an evolution of my original [Slovenian DateTime](https://github.com/techouse/slovenian-date-time)

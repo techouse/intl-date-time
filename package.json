@@ -14,10 +14,10 @@
         "flatpickr": "^4.5.2",
         "laravel-mix": "^1.0",
         "laravel-nova": "^1.0",
+        "moment": "git+https://github.com/tqc/moment.git#no-dynamic-import",
         "postcss-discard-comments": "^4.0.1"
     },
     "dependencies": {
-        "moment": "git+https://github.com/tqc/moment.git#no-dynamic-import",
         "vue": "^2.5.0"
     }
 }

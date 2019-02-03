@@ -1,0 +1,42 @@
+{
+    "name": "techouse/intl-date-time",
+    "description": "International datepicker for Laravel Nova.",
+    "keywords": [
+        "laravel",
+        "nova",
+        "datepicker",
+        "date",
+        "picker",
+        "international",
+        "localisation"
+    ],
+    "authors": [
+        {
+           "name": "Klemen Tušar",
+           "email": "techouse@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0",
+        "illuminate/support": "^5.6",
+        "laravel/nova": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Techouse\\IntlDateTime\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Techouse\\IntlDateTime\\FieldServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

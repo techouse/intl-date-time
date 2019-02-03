@@ -1,5 +1,8 @@
 # International DateTime
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/techouse/intl-date-time.svg?style=flat-square)](https://packagist.org/packages/techouse/intl-date-time)
+[![Total Downloads](https://img.shields.io/packagist/dt/techouse/intl-date-time.svg?style=flat-square)](https://packagist.org/packages/techouse/intl-date-time)
+
 ##### International datepicker for Laravel Nova
 
 Apply localisation to Laravel Nova's default `DateTime` field that currently doesn't support localisation out of the box.

@@ -6,6 +6,8 @@
                                        :value="localizedValue"
                                        :date-format="dateFormat"
                                        :time-format="timeFormat"
+                                       :enable-time="enableTime"
+                                       :enable-seconds="enableSeconds"
                                        :locale="locale"
                                        class="w-full form-control form-input form-input-bordered"
                                        @change="handleChange"/>
@@ -42,7 +44,7 @@
             dateFormat() {
                 if (this.field.dateFormat) {
                     try {
-                        return DateTimeFormatConverter.momentToFlatpickr(`${this.field.dateFormat} ${this.timeFormat}`)
+                        return DateTimeFormatConverter.momentToFlatpickr(`${this.field.dateFormat} ${this.timeFormat}`.trim())
                     } catch (e) {
                         console.warn(e)
                     }
@@ -50,15 +52,33 @@
 
                 return this.defaultFlatpickrFormat
             },
+
             timeFormat() {
-                return this.field.timeFormat || 'HH:mm:ss'
+                if (this.field.timeFormat) {
+                    if (this.field.timeFormat.match(/^[Hh]{1,2}:[m]{1,2}(:[s]{1,2})?$/)) {
+                        return this.field.timeFormat
+                    }
+                }
+
+                return ''
             },
+
+            enableTime() {
+                return !!this.timeFormat
+            },
+
+            enableSeconds() {
+                return !!(this.timeFormat && this.timeFormat.match(/:[s]{1,2}$/))
+            },
+
             locale() {
                 return this.field.locale || 'en-gb'
             },
+
             momentjsFormat() {
-                return `${locales.momentjs[this.locale].L} ${this.timeFormat}`.replace(/[^ -~]+/g, '')
+                return `${locales.momentjs[this.locale].L} ${this.timeFormat}`.replace(/[^ -~]+/g, '').trim()
             },
+
             defaultFlatpickrFormat() {
                 try {
                     return DateTimeFormatConverter.momentToFlatpickr(this.momentjsFormat)
@@ -68,13 +88,14 @@
 
                 return 'd/m/Y H:i:S'
             },
+
             format() {
-                return this.field.dateFormat ? `${this.field.dateFormat} ${this.timeFormat}` : this.momentjsFormat
+                return this.field.dateFormat ? `${this.field.dateFormat} ${this.timeFormat}`.trim() : this.momentjsFormat
             }
         },
 
         methods: {
-            /*
+            /**
              * Set the initial value for the field
              */
             setInitialValue() {

@@ -43,15 +43,25 @@
             dateFormat() {
                 return this.field.dateFormat || locales.momentjs[this.locale].L
             },
+
             timeFormat() {
-                return this.field.timeFormat || 'HH:mm:ss'
+                if (this.field.timeFormat) {
+                    if (this.field.timeFormat.match(/^[Hh]{1,2}:[m]{1,2}(:[s]{1,2})?$/)) {
+                        return this.field.timeFormat
+                    }
+                }
+
+                return ''
             },
+
             locale() {
                 return this.field.locale || 'en-gb'
             },
+
             momentjsFormat() {
-                return `${this.dateFormat} ${this.timeFormat}`.replace(/[^ -~]+/g, '')
+                return `${this.dateFormat} ${this.timeFormat}`.replace(/[^ -~]+/g, '').trim()
             },
+
             /**
              * Get the localized date time.
              */

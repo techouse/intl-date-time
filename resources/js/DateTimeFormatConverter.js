@@ -1,3 +1,8 @@
+/**
+ * https://flatpickr.js.org/formatting/
+ *
+ * NOTE: The key order is important! It has to go from longest to shortest!
+ */
 const flatpickrFormatMapping = {
     d: 'DD',
     D: 'ddd',
@@ -14,13 +19,18 @@ const flatpickrFormatMapping = {
     Y: 'YYYY',
     Z: 'YYYY-MM-DDTHH:mm:ss.SSSZ',
     H: 'HH',
-    h: 'H',
+    h: 'h',
     i: 'mm',
     S: 'ss',
     s: 's',
     K: 'A'
 }
 
+/**
+ * https://momentjs.com/docs/#/displaying/format/
+ *
+ * NOTE: The key order is important! It has to go from longest to shortest!
+ */
 const momentFormatMapping = {
     dddd: 'l',
     ddd:  'D',
@@ -36,18 +46,30 @@ const momentFormatMapping = {
     YYYY: 'Y',
     YY:   'y',
     HH:   'H',
-    H:    'h',
+    H:    'H',
+    h:    'h',
     mm:   'i',
+    m:    'i',
     ss:   'S',
     s:    's',
     A:    'K'
 }
 
+/**
+ * Add more delimiters if needed
+ */
 const delimiters = ['.', '-', '/', ':', ' ', '年', '日']
 
 export default class DateTimeFormatConverter {
+    /**
+     * Convert format
+     *
+     * @param mapping
+     * @param string
+     * @returns {string}
+     */
     static convertFormat(mapping, string) {
-        string = string.replace(/[^ -~]+/g, '')
+        string = string.replace(/[^ -~]+/g, '').replace(/\s+/g, ' ').trim()
 
         let format = ''
 
@@ -56,18 +78,20 @@ export default class DateTimeFormatConverter {
 
             for (let f in mapping) {
                 if (mapping.hasOwnProperty(f)) {
+                    if (delimiters.indexOf(string.slice(0, 1)) > -1) {
+                        // add the delimiter which is usually the next character
+                        format += string.slice(0, 1)
+                        // trim it away from the string
+                        string = string.slice(1)
+
+                        advance = true
+                    }
+
                     if (string.startsWith(f)) {
                         // translate the format
                         format += mapping[f]
                         // remove the just parsed format
                         string = string.slice(f.length)
-
-                        advance = true
-                    } else if (delimiters.indexOf(string.slice(0, 1)) > -1) {
-                        // add the delimiter which is usually the next character
-                        format += string.slice(0, 1)
-                        // trim it away from the string
-                        string = string.slice(1)
 
                         advance = true
                     }
@@ -79,7 +103,7 @@ export default class DateTimeFormatConverter {
             }
         }
 
-        return format
+        return format.trim()
     }
 
     /**

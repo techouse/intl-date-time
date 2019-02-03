@@ -21,11 +21,6 @@ class IntlDateTime extends DateTime
     protected $locale = 'en-gb';
 
     /**
-     * @var string
-     */
-    protected $timeFormat = 'HH:mm:ss';
-
-    /**
      * @var array
      */
     private static $momentjsSupportedLocales = [
@@ -53,7 +48,6 @@ class IntlDateTime extends DateTime
         }
 
         $this->withMeta(['locale' => $this->locale]);
-        $this->withMeta(['timeFormat' => $this->timeFormat]);
     }
 
     /**
@@ -87,11 +81,16 @@ class IntlDateTime extends DateTime
     /**
      * @param $format
      * @return mixed
+     * @throws \Techouse\IntlDateTime\TimeFormatNotSupportedException
      */
     public function timeFormat($format)
     {
         if ($format) {
-            return $this->withMeta([__FUNCTION__ => $format]);
+            if (preg_match('/^[Hh]{1,2}:[m]{1,2}(:[s]{1,2})?$/', $format)) {
+                return $this->withMeta([__FUNCTION__ => $format]);
+            }
+
+            throw new TimeFormatNotSupportedException("Time format {$format} is not supported by MomentJS! Please refer to the module documentation.");
         }
     }
 

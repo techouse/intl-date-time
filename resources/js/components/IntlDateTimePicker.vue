@@ -36,7 +36,7 @@
             },
             timeFormat:     {
                 type:    String,
-                default: 'HH:mm:ss'
+                default: ''
             },
             twelveHourTime: {
                 type:    Boolean,
@@ -44,11 +44,11 @@
             },
             enableTime:     {
                 type:    Boolean,
-                default: true,
+                default: false,
             },
             enableSeconds:  {
                 type:    Boolean,
-                default: true,
+                default: false,
             },
             locale:         {
                 type:    String,
@@ -79,8 +79,9 @@
 
         computed: {
             momentjsFormat() {
-                return `${locales.momentjs[this.locale].L} ${this.timeFormat}`.replace(/[^ -~]+/g, '')
+                return `${locales.momentjs[this.locale].L} ${this.timeFormat}`.replace(/[^ -~]+/g, '').trim()
             },
+
             dateFormatString() {
                 if (this.dateFormat) {
                     return this.dateFormat
@@ -94,6 +95,7 @@
                     return 'd/m/Y H:i:S'
                 }
             },
+
             placeholder() {
                 return moment().format(this.momentjsFormat)
             }

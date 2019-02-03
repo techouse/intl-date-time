@@ -24,7 +24,7 @@ The API is adapted from [Nova's default `DateTime` Field](https://nova.laravel.c
 The module itself offers 3 optional configurations:
 * __locale__ - _OPTIONAL_ -  With this you can define the module's locale. If you do not it will automatically use your app's `config('app.locale')`. If you manually define an unsupported locale it will throw an Exception!
 * __dateFormat__ - _OPTIONAL_ - With this you can define a date format. If you do not provide it the module will automatically use the appropriate locale's date format. The format must be [MomentJS compatible](https://momentjs.com/docs/#/displaying/format/)!
-* __timeFormat__ - _OPTIONAL_ - With this you can define a time format. If you do not provide it the module will automatically use `HH:mm:ss`. The format must be [MomentJS compatible](https://momentjs.com/docs/#/displaying/format/)!
+* __timeFormat__ - _OPTIONAL_ - With this you can define a time format. If you do not provide it the module will automatically use `HH:mm:ss`. The format must be [MomentJS compatible](https://momentjs.com/docs/#/displaying/format/)! If you manually define an unsupported time format it will throw an Exception!
 
 Simply use `IntlDateTime` class instead of `DateTime` directly or alias it like the example below so you won't have to refactor too much existing code.
 

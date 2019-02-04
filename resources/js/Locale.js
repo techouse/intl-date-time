@@ -1,4 +1,5 @@
 import {flatpickrLocaleMapping, momentjsLocaleMapping} from './InternationalMapper'
+import {locales}                                       from 'moment/src/locale/extracted'
 
 let flatpickrLocales = {},
     momentjsLocales  = {}
@@ -8,7 +9,7 @@ for (const code in flatpickrLocaleMapping) {
 }
 
 for (const code in momentjsLocaleMapping) {
-    momentjsLocales[code] = require(`moment/src/locale/${code}.js`).default._longDateFormat
+    momentjsLocales[code] = locales[code]
 }
 
 export const locale = {

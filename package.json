@@ -1,6 +1,7 @@
 {
     "private": true,
     "scripts": {
+        "postinstall": "/usr/bin/env python extract_moment_locales.py",
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
@@ -14,7 +15,7 @@
         "flatpickr": "^4.5.2",
         "laravel-mix": "^1.0",
         "laravel-nova": "^1.0",
-        "moment": "git+https://github.com/tqc/moment.git#no-dynamic-import",
+        "moment": "^2.24.0",
         "postcss-discard-comments": "^4.0.1"
     },
     "dependencies": {

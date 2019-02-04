@@ -4,7 +4,11 @@ import json
 import os
 
 moment_locale_directory = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), "node_modules/moment/src/locale"
+    os.path.dirname(os.path.abspath(__file__)),
+    "node_modules",
+    "moment",
+    "src",
+    "locale",
 )
 
 long_date_format_parts = (
@@ -50,4 +54,7 @@ if os.path.isdir(moment_locale_directory):
 with io.open(
     os.path.join(moment_locale_directory, "extracted.js"), "w", encoding="utf-8"
 ) as outfile:
-    outfile.write("export const locales = " + json.dumps(locales, ensure_ascii=False, sort_keys=True, indent=4))
+    outfile.write(
+        "export const locales = "
+        + json.dumps(locales, ensure_ascii=False, sort_keys=True, indent=4)
+    )

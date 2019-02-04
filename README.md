@@ -86,7 +86,7 @@ class User extends Resource
 
 ## List of supported locales
 
-Only module supports only locales that are __SUPPORTED BY BOTH__ [MomentJS](https://github.com/moment/moment/tree/develop/src/locale) __AND__ [Flatpickr](https://github.com/flatpickr/flatpickr/tree/v4.5.2/src/l10n)!
+Only module supports only locales that are __SUPPORTED BY BOTH__ [MomentJS](https://github.com/moment/moment/tree/2.24.0/src/locale) __AND__ [Flatpickr](https://github.com/flatpickr/flatpickr/tree/v4.5.2/src/l10n)!
 
 The __63__ locales that are _currently supported_ are:
 

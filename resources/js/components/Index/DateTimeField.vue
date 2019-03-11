@@ -1,5 +1,6 @@
 <template>
-    <span class="whitespace-no-wrap">{{ localizedDateTime }}</span>
+    <span v-if="field.value" class="whitespace-no-wrap">{{ localizedDateTime }}</span>
+    <span v-else>&mdash;</span>
 </template>
 
 <script>

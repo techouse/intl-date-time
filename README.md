@@ -64,7 +64,7 @@ class User extends Resource
                       * It has to be compatible with MomentJS!!!
                       * https://momentjs.com/docs/#/displaying/format/
                       */
-                    ->dateFormat('d.m.Y'),   
+                    ->dateFormat('DD.MM.YYYY'),   
                     
             DateTime::make(__('Deleted at'), 'deleted_at')
                     /**
@@ -73,7 +73,7 @@ class User extends Resource
                       * It has to be compatible with MomentJS!!!
                       * https://momentjs.com/docs/#/displaying/format/
                       */
-                    ->timeFormat('HH:mm'),
+                    ->timeFormat('HH:mm:ss'),
         ];
     }
 
@@ -86,7 +86,7 @@ class User extends Resource
 
 ## List of supported locales
 
-Only module supports only locales that are __SUPPORTED BY BOTH__ [MomentJS](https://github.com/moment/moment/tree/2.24.0/src/locale) __AND__ [Flatpickr](https://github.com/flatpickr/flatpickr/tree/v4.5.2/src/l10n)!
+This module supports only locales that are __SUPPORTED BY BOTH__ [MomentJS](https://github.com/moment/moment/tree/2.24.0/src/locale) __AND__ [Flatpickr](https://github.com/flatpickr/flatpickr/tree/v4.5.2/src/l10n)!
 
 The __63__ locales that are _currently supported_ are:
 

@@ -64,7 +64,7 @@ class User extends Resource
                       * It has to be compatible with MomentJS!!!
                       * https://momentjs.com/docs/#/displaying/format/
                       */
-                    ->dateFormat('d.m.Y'),   
+                    ->dateFormat('DD.MM.YYYY'),   
                     
             DateTime::make(__('Deleted at'), 'deleted_at')
                     /**
@@ -73,7 +73,7 @@ class User extends Resource
                       * It has to be compatible with MomentJS!!!
                       * https://momentjs.com/docs/#/displaying/format/
                       */
-                    ->timeFormat('HH:mm'),
+                    ->timeFormat('HH:mm:ss'),
         ];
     }
 

@@ -70,6 +70,7 @@ export const momentjsLocaleMapping = {
     'de-at': {translation: 'at'},
     'de-ch': {translation: 'de'},
     el:      {translation: 'gr'},
+    en:      {translation: 'default'},
     'en-au': {translation: 'default'},
     'en-ca': {translation: 'default'},
     'en-gb': {translation: 'default'},

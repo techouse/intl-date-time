@@ -49,7 +49,10 @@ if os.path.isdir(moment_locale_directory):
                                 long_date_format[key] = value
 
                         if long_date_format:
-                            locales[file.replace(".js", "")] = long_date_format
+                            locale_name = file.replace(".js", "")
+                            locales[locale_name] = long_date_format
+                            if locale_name == "en-gb":
+                                locales["en"] = long_date_format
 
 with io.open(
     os.path.join(moment_locale_directory, "extracted.js"), "w", encoding="utf-8"

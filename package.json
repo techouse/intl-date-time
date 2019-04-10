@@ -14,12 +14,12 @@
         "cross-env": "^5.0.0",
         "flatpickr": "^4.5.7",
         "laravel-mix": "^1.0",
-        "laravel-nova": "^1.0.7",
+        "laravel-nova": "^1.0.8",
         "moment": "^2.24.0",
         "postcss-discard-comments": "^4.0.2",
-        "vue-template-compiler": "2.6.8"
+        "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "vue": "^2.6.8"
+        "vue": "^2.6.10"
     }
 }

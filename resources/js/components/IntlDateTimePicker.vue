@@ -5,7 +5,8 @@
            :class="{'!cursor-not-allowed': disabled}"
            :value="value"
            :name="field.name"
-           :placeholder="placeholder"
+           :placeholder="momentjsFormat"
+           v-mask="maskFormat"
            type="text">
 </template>
 
@@ -14,6 +15,7 @@
     import DateTimeFormatConverter from '../DateTimeFormatConverter'
     import {momentjsLocaleMapping} from '../InternationalMapper'
     import {locale as locales}     from '../Locale'
+    import {mask}                  from 'vue-the-mask'
 
     export default {
         props: {
@@ -56,6 +58,10 @@
             }
         },
 
+        directives: {
+            mask
+        },
+
         data() {
             return {
                 flatpickr: null
@@ -93,6 +99,10 @@
 
                     return 'd/m/Y H:i:S'
                 }
+            },
+
+            maskFormat() {
+                return this.momentjsFormat.replace(/\w/g, '#')
             },
 
             placeholder() {

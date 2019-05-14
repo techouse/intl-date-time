@@ -139,6 +139,7 @@ The __63__ locales that are _currently supported_ are:
 | Persian                       | `fa`    |
 | Polish                        | `pl`    |
 | Portuguese                    | `pt`    |
+| Portuguese (Brazil)           | `pt-br` |
 | Punjabi                       | `pa-in` |
 | Romanian                      | `ro`    |
 | Russian                       | `ru`    |

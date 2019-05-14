@@ -1,4 +1,4 @@
-const mix                    = require('laravel-mix').mix,
+const mix                    = require('laravel-mix'),
       postCssDiscardComments = require('postcss-discard-comments')
 
 mix.setPublicPath('dist')

@@ -27,7 +27,7 @@ class IntlDateTime extends DateTime
         'hr', 'th', 'tr', 'ar', 'be', 'bg', 'bn', 'ca', 'cs', 'cy', 'da', 'de', 'de-at', 'de-ch', 'en', 'en-ca',
         'en-au', 'en-gb', 'en-ie', 'en-nz', 'eo', 'es', 'es-do', 'es-us', 'et', 'fa', 'fi', 'fr', 'fr-ca', 'fr-ch',
         'el', 'he', 'hi', 'hu', 'id', 'it', 'ja', 'ko', 'km', 'kk', 'lt', 'lv', 'mk', 'ms', 'my', 'nl', 'nb', 'pa-in',
-        'pl', 'pt', 'ro', 'ru', 'si', 'sk', 'sl', 'sq', 'sr', 'sv', 'uk', 'vi', 'zh-cn', 'zh-hk', 'zh-tw',
+        'pl', 'pt', 'pt-br', 'ro', 'ru', 'si', 'sk', 'sl', 'sq', 'sr', 'sv', 'uk', 'vi', 'zh-cn', 'zh-hk', 'zh-tw',
     ];
 
     /**

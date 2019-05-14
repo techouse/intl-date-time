@@ -106,6 +106,7 @@ export const momentjsLocaleMapping = {
     'pa-in': {translation: 'pa'},
     pl:      {translation: 'pl'},
     pt:      {translation: 'pt'},
+    'pt-br': {translation: 'pt'},
     ro:      {translation: 'ro'},
     ru:      {translation: 'ru'},
     si:      {translation: 'si'},

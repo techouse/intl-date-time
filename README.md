@@ -5,7 +5,7 @@
 
 ##### International datepicker for Laravel Nova
 
-Apply localisation in __63__ different locales to Laravel Nova's default `DateTime` field that currently doesn't support localisation out of the box.
+Apply localisation in __64__ different locales to Laravel Nova's default `DateTime` field that currently doesn't support localisation out of the box.
 
 ![International DateTime](./screenshot.png)
 
@@ -88,7 +88,7 @@ class User extends Resource
 
 This module supports only locales that are __SUPPORTED BY BOTH__ [MomentJS](https://github.com/moment/moment/tree/2.24.0/src/locale) __AND__ [Flatpickr](https://github.com/flatpickr/flatpickr/tree/v4.5.2/src/l10n)!
 
-The __63__ locales that are _currently supported_ are:
+The __64__ locales that are _currently supported_ are:
 
 | Language                      | locale  |
 | :---                          | :---:   |

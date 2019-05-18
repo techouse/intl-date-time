@@ -113,7 +113,7 @@
              * Update the field's internal value when it's value changes
              */
             handleChange(value) {
-                this.$set(this, 'value', moment(value, this.format).format(this.defaultMomentJSFormat))
+                this.$set(this, 'value', value ? moment(value, this.format).format(this.defaultMomentJSFormat) : '')
             },
         },
     }

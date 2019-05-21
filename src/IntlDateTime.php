@@ -95,6 +95,15 @@ class IntlDateTime extends DateTime
     }
 
     /**
+     * @param $placeholder
+     * @return mixed
+     */
+    public function placeholder($placeholder = null)
+    {
+        return $this->withMeta([__FUNCTION__ => $placeholder]);
+    }
+
+    /**
      * @param $locale
      * @return mixed
      * @throws \Techouse\IntlDateTime\LocaleNotSupportedException

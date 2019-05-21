@@ -74,6 +74,19 @@ class User extends Resource
                       * https://momentjs.com/docs/#/displaying/format/
                       */
                     ->timeFormat('HH:mm:ss'),
+                    
+            DateTime::make(__('Packaged on'), 'packaged_on')
+                    /**
+                      * You can optionally set a placeholder, otherwise
+                      * it will default to your timezone's date format 
+                      */
+                    ->placeholder('DD.MM.LLLL'),
+                    
+            DateTime::make(__('Shipped on'), 'shipped_on')
+                    /**
+                      * You can disable the placeholder by setting it to false
+                      */
+                    ->placeholder(false),
         ];
     }
 

@@ -5,7 +5,7 @@
            :class="{'!cursor-not-allowed': disabled}"
            :value="value"
            :name="field.name"
-           :placeholder="momentjsFormat"
+           :placeholder="placeholder"
            v-mask="maskFormat"
            type="text">
 </template>
@@ -55,6 +55,10 @@
             locale:         {
                 type:    String,
                 default: 'en-gb'
+            },
+            placeholder: {
+                type:    String,
+                default: ''
             }
         },
 
@@ -105,9 +109,12 @@
                 return this.momentjsFormat.replace(/\w/g, '#')
             },
 
-            placeholder() {
-                return moment().format(this.momentjsFormat)
-            }
+            // placeholder() {
+            //     // if ('placeholder' in this.field && this.field.placeholder) {
+            //     //     return this.field.placeholder
+            //     // }
+            //     return this.momentjsFormat
+            // }
         },
 
         methods: {

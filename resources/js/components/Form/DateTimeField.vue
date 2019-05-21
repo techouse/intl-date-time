@@ -8,6 +8,7 @@
                                        :time-format="timeFormat"
                                        :enable-time="enableTime"
                                        :enable-seconds="enableSeconds"
+                                       :placeholder="placeholder"
                                        :locale="locale"
                                        class="w-full form-control form-input form-input-bordered"
                                        @change="handleChange"/>
@@ -91,6 +92,17 @@
 
             format() {
                 return this.field.dateFormat ? `${this.field.dateFormat} ${this.timeFormat}`.trim() : this.momentjsFormat
+            },
+
+            placeholder() {
+                if ('placeholder' in this.field) {
+                    if (this.field.placeholder) {
+                        return this.field.placeholder
+                    } else if (this.field.placeholder === false) {
+                        return ''
+                    }
+                }
+                return this.momentjsFormat
             }
         },
 

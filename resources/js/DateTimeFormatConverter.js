@@ -56,6 +56,37 @@ const momentFormatMapping = {
 }
 
 /**
+ * https://date-fns.org/v2.0.0-alpha.27/docs/format
+ * https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table
+ * https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
+ *
+ * NOTE: This is primarily used for VeeValidate which uses date-fns 2.0 to do date validation
+ */
+const dateFnsFormatMapping = {
+    dddd: 'EEEE',
+    ddd:  'E..EEE',
+    DD:   'dd',
+    Do:   'do',
+    D:    'D',
+    d:    'i',
+    MMMM: 'MMMM',
+    MMM:  'MMM',
+    MM:   'MM',
+    M:    'M',
+    X:    't',
+    YYYY: 'yyyy',
+    YY:   'yy',
+    HH:   'HH',
+    H:    'H',
+    h:    'h',
+    mm:   'mm',
+    m:    'm',
+    ss:   'ss',
+    s:    's',
+    A:    'a..aaa'
+}
+
+/**
  * Add more delimiters if needed
  */
 const delimiters = ['.', '-', '/', ':', ' ', '年', '日']
@@ -99,7 +130,7 @@ export default class DateTimeFormatConverter {
             }
 
             if (!advance) {
-                break;
+                break
             }
         }
 
@@ -129,6 +160,20 @@ export default class DateTimeFormatConverter {
     static flatpickrToMoment(string) {
         if (string) {
             return this.convertFormat(flatpickrFormatMapping, string)
+        } else {
+            throw "Empty input string provided!"
+        }
+    }
+
+    /**
+     * Converts a MomentJS datetime format to a date-fns format
+     *
+     * @param string
+     * @returns {string}
+     */
+    static momentToDateFns(string) {
+        if (string) {
+            return this.convertFormat(dateFnsFormatMapping, string)
         } else {
             throw "Empty input string provided!"
         }

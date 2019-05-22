@@ -87,6 +87,12 @@ class User extends Resource
                       * You can disable the placeholder by setting it to false
                       */
                     ->placeholder(false),
+                    
+            DateTime::make(__('Birthday'), 'birthday')
+                    /**
+                      * You can override the default date invalid error message
+                      */
+                    ->errorMessage("I don't think you were born on that day mate :D")
         ];
     }
 

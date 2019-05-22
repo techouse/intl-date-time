@@ -1,5 +1,5 @@
 <template>
-    <default-field :field="field" :errors="errors">
+    <default-field :field="field" :errors.sync="errors">
         <template slot="field">
             <div class="flex items-center">
                 <intl-date-time-picker :field="field"
@@ -11,21 +11,23 @@
                                        :placeholder="placeholder"
                                        :locale="locale"
                                        class="w-full form-control form-input form-input-bordered"
-                                       @change="handleChange"/>
+                                       :class="validationError ? errorClass : null"
+                                       @change="handleChange"
+                                       @error="handleError"/>
                 <span class="text-80 text-sm ml-2">({{ userTimezone }})</span>
             </div>
+            <help-text v-if="firstError" class="error-text mt-2 text-danger">{{ firstError }}</help-text>
         </template>
     </default-field>
 </template>
 
 <script>
-    import IntlDateTimePicker                                       from '../IntlDateTimePicker'
-    import DateTimeFormatConverter                                  from '../../DateTimeFormatConverter'
-    import {locale as locales}                                      from '../../Locale'
-    import {FormField, HandlesValidationErrors, InteractsWithDates} from 'laravel-nova'
+    import IntlDateTimePicker                                               from '../IntlDateTimePicker'
+    import DateTimeFormatConverter                                          from '../../DateTimeFormatConverter'
+    import {locale as locales}                                              from '../../Locale'
+    import {Errors, FormField, HandlesValidationErrors, InteractsWithDates} from 'laravel-nova'
 
     export default {
-
         components: {
             IntlDateTimePicker
         },
@@ -37,7 +39,9 @@
         data() {
             return {
                 defaultMomentJSFormat: 'YYYY-MM-DD HH:mm:ss',
-                localizedValue:        ''
+                localizedValue:        '',
+                validationError:       false,
+                validationErrors:      new Errors()
             }
         },
 
@@ -103,6 +107,13 @@
                     }
                 }
                 return this.momentjsFormat
+            },
+
+            firstError() {
+                if (this.validationErrors.errors.length) {
+                    return this.field.errorMessage || this.validationErrors.errors[0]
+                }
+                return null
             }
         },
 
@@ -122,11 +133,26 @@
             },
 
             /**
-             * Update the field's internal value when it's value changes
+             * Update the field's internal value when it's value changes and is valid at the same time
              */
             handleChange(value) {
+                this.$set(this, 'validationErrors', new Errors())
+                this.$set(this, 'validationError', false)
+
                 this.$set(this, 'value', value ? moment(value, this.format).format(this.defaultMomentJSFormat) : '')
             },
+
+            handleError({errors}) {
+                this.$set(this, 'validationErrors', new Errors(errors))
+                this.$set(this, 'validationError', true)
+            },
+
+            /**
+             * Check if the date is valid using MomentJS
+             */
+            isValidDate(value) {
+                return !value ? true : moment(value, this.momentjsFormat).isValid()
+            }
         },
     }
 </script>

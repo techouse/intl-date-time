@@ -124,4 +124,15 @@ class IntlDateTime extends DateTime
             return $this->withMeta([__FUNCTION__ => $locale]);
         }
     }
+
+    /**
+     * @param $message
+     * @return mixed
+     */
+    public function errorMessage($message)
+    {
+        if ($message) {
+            return $this->withMeta([__FUNCTION__ => $message]);
+        }
+    }
 }

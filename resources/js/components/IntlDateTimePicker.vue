@@ -1,5 +1,5 @@
 <template>
-    <input ref="intlDatepickerInput"
+    <input :ref="refName"
            :disabled="disabled"
            :dusk="field.attribute"
            :class="{'!cursor-not-allowed': disabled}"
@@ -16,6 +16,8 @@
     import {momentjsLocaleMapping} from '../InternationalMapper'
     import {locale as locales}     from '../Locale'
     import {mask}                  from 'vue-the-mask'
+    import {Validator}             from 'vee-validate'
+    import {Errors}                from 'laravel-nova'
 
     export default {
         props: {
@@ -56,7 +58,7 @@
                 type:    String,
                 default: 'en-gb'
             },
-            placeholder: {
+            placeholder:    {
                 type:    String,
                 default: ''
             }
@@ -68,15 +70,21 @@
 
         data() {
             return {
-                flatpickr: null
+                refName:          "intlDatepickerInput",
+                flatpickr:        null,
+                validator:        new Validator(),
+                validationError:  false,
+                validationErrors: new Errors()
             }
         },
 
         mounted() {
             this.$nextTick(() => {
-                this.flatpickr = flatpickr(this.$refs.intlDatepickerInput, {
+                this.flatpickr = flatpickr(this.$refs[this.refName], {
                     enableTime:    this.enableTime,
                     enableSeconds: this.enableSeconds,
+                    onChange:      this.onChange,
+                    onValueUpdate: this.onChange,
                     onClose:       this.onChange,
                     dateFormat:    this.dateFormatString,
                     allowInput:    true,
@@ -109,17 +117,32 @@
                 return this.momentjsFormat.replace(/\w/g, '#')
             },
 
-            // placeholder() {
-            //     // if ('placeholder' in this.field && this.field.placeholder) {
-            //     //     return this.field.placeholder
-            //     // }
-            //     return this.momentjsFormat
-            // }
+            dateValidationRule() {
+                return `date_format:${DateTimeFormatConverter.momentToDateFns(this.momentjsFormat)}`
+            }
         },
 
         methods: {
-            onChange() {
-                this.$emit('change', this.$refs.intlDatepickerInput.value)
+            onChange(selectedDates, dateStr, instance) {
+                if (dateStr) {
+                    this.validator
+                        .verify(dateStr, this.dateValidationRule, {name: this.field.name})
+                        .then(({valid, errors}) => {
+                            if (valid) {
+                                this.$set(this, 'validationErrors', new Errors())
+                                this.$set(this, 'validationError', false)
+                                this.$emit('change', dateStr)
+                            } else {
+                                this.$set(this, 'validationErrors', new Errors(errors))
+                                this.$set(this, 'validationError', true)
+                                this.$emit('error', this.validationErrors)
+                            }
+                        })
+                } else {
+                    this.$set(this, 'validationErrors', new Errors())
+                    this.$set(this, 'validationError', false)
+                    this.$emit('change', dateStr)
+                }
             },
         },
     }

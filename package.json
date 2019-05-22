@@ -17,6 +17,7 @@
         "laravel-nova": "^1.0",
         "moment": "^2.24.0",
         "postcss-discard-comments": "^4.0.2",
+        "vee-validate": "^2.2.7",
         "vue-template-compiler": "^2.6.10",
         "vue-the-mask": "^0.11.1"
     },

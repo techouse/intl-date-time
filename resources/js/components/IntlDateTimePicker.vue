@@ -11,7 +11,6 @@
 </template>
 
 <script>
-    import Vue                     from 'vue'
     import flatpickr               from 'flatpickr'
     import DateTimeFormatConverter from '../DateTimeFormatConverter'
     import {momentjsLocaleMapping} from '../InternationalMapper'

@@ -11,6 +11,7 @@
 </template>
 
 <script>
+    import Vue                     from 'vue'
     import flatpickr               from 'flatpickr'
     import DateTimeFormatConverter from '../DateTimeFormatConverter'
     import {momentjsLocaleMapping} from '../InternationalMapper'
@@ -21,44 +22,48 @@
 
     export default {
         props: {
-            field:          {
+            field:              {
                 type:     Object,
                 required: true,
             },
-            value:          {
+            value:              {
                 type:     String,
                 required: false,
                 default:  ''
             },
-            disabled:       {
+            disabled:           {
                 type:    Boolean,
                 default: false,
             },
-            dateFormat:     {
+            dateFormat:         {
                 type:    String,
                 default: ''
             },
-            timeFormat:     {
+            timeFormat:         {
                 type:    String,
                 default: ''
             },
-            twelveHourTime: {
+            twelveHourTime:     {
                 type:    Boolean,
                 default: false,
             },
-            enableTime:     {
+            enableTime:         {
                 type:    Boolean,
                 default: false,
             },
-            enableSeconds:  {
+            enableSeconds:      {
                 type:    Boolean,
                 default: false,
             },
-            locale:         {
+            locale:             {
                 type:    String,
                 default: 'en-gb'
             },
-            placeholder:    {
+            errorMessageLocale: {
+                type:    String,
+                default: 'en'
+            },
+            placeholder:        {
                 type:    String,
                 default: ''
             }
@@ -79,6 +84,8 @@
         },
 
         mounted() {
+            this.localizeValidator(this.errorMessageLocale)
+
             this.$nextTick(() => {
                 this.flatpickr = flatpickr(this.$refs[this.refName], {
                     enableTime:    this.enableTime,
@@ -144,6 +151,23 @@
                     this.$emit('change', dateStr)
                 }
             },
+
+            localizeValidator(localeName) {
+                /**
+                 * Asynchronously load the locale file then localize the validator with it
+                 *
+                 * Setting __webpack_public_path__ is a hacky solution but there is no other
+                 * way changing the URL from which WebPack fetches these localization files.
+                 */
+                __webpack_public_path__ = ("/nova-api/scripts/" + __webpack_public_path__)
+                import(`../../../node_modules/vee-validate/dist/locale/${localeName}` /* webpackChunkName: "js/validation_locales/" */)
+                    .then(locale => {
+                        this.validator.localize(localeName, locale)
+                    })
+                    .catch(error => {
+                        console.warn(`The error messages do not support the '${localeName}' locale. Defaulting back to English. Please define another locale manually with errorMessageLocale().`)
+                    })
+            }
         },
     }
 </script>

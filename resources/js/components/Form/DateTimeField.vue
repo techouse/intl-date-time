@@ -10,8 +10,9 @@
                                        :enable-seconds="enableSeconds"
                                        :placeholder="placeholder"
                                        :locale="locale"
-                                       class="w-full form-control form-input form-input-bordered"
+                                       :errorMessageLocale="errorMessageLocale"
                                        :class="validationError ? errorClass : null"
+                                       class="w-full form-control form-input form-input-bordered"
                                        @change="handleChange"
                                        @error="handleError"/>
                 <span class="text-80 text-sm ml-2">({{ userTimezone }})</span>
@@ -78,6 +79,10 @@
 
             locale() {
                 return this.field.locale || 'en-gb'
+            },
+
+            errorMessageLocale() {
+                return this.field.errorMessageLocale || 'en'
             },
 
             momentjsFormat() {

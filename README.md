@@ -26,7 +26,8 @@ The module itself offers 3 optional configurations:
 * __dateFormat__ - _OPTIONAL_ - Set a date format. If you do not provide it the module will automatically use the appropriate locale's date format. The format must be [MomentJS compatible](https://momentjs.com/docs/#/displaying/format/)!
 * __timeFormat__ - _OPTIONAL_ - Set a time format. If you do not provide it the module will automatically use `HH:mm:ss`. The format must be [MomentJS compatible](https://momentjs.com/docs/#/displaying/format/)! If you manually define an unsupported time format it will throw an Exception!
 * __placeholder__ - _OPTIONAL_ - Set a placeholder. If you do not want a placeholder set it to `false`.
-* __errorMessage__ - _OPTIONAL_ - Set a custom error message in case of an invalid date format. If you do not set it it will display an error message in English.
+* __errorMessage__ - _OPTIONAL_ - Set a custom error message in case of an invalid date format. If you do not set it it will display an error message in the current locale.
+* __errorMessageLocale__ - _OPTIONAL_ - Set a custom error message locale. If not set it equals the set `locale` or your app's `config('app.locale')`. If you manually define an unsupported locale it will throw an Exception! [Here is the list of all supported locales](https://github.com/baianat/vee-validate/tree/master/locale).
 
 Simply use `IntlDateTime` class instead of `DateTime` directly or alias it like the example below so you won't have to refactor too much existing code.
 
@@ -94,7 +95,13 @@ class User extends Resource
                     /**
                       * You can override the default date invalid error message
                       */
-                    ->errorMessage("I don't think you were born on that day mate :D")
+                    ->errorMessage("I don't think you were born on that day mate :D"),
+                    
+            DateTime::make(__('Day of graduation'), 'graduated_on')
+                    /**
+                      * Unless you override the error message locale it equals the locale setting
+                      */
+                    ->errorMessageLocale('de')
         ];
     }
 

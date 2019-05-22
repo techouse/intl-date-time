@@ -22,9 +22,11 @@ composer require techouse/intl-date-time
 The API is adapted from [Nova's default `DateTime` Field](https://nova.laravel.com/docs/1.0/resources/fields.html#datetime-field).
 
 The module itself offers 3 optional configurations:
-* __locale__ - _OPTIONAL_ -  With this you can define the module's locale. If you do not it will automatically use your app's `config('app.locale')`. If you manually define an unsupported locale it will throw an Exception!
-* __dateFormat__ - _OPTIONAL_ - With this you can define a date format. If you do not provide it the module will automatically use the appropriate locale's date format. The format must be [MomentJS compatible](https://momentjs.com/docs/#/displaying/format/)!
-* __timeFormat__ - _OPTIONAL_ - With this you can define a time format. If you do not provide it the module will automatically use `HH:mm:ss`. The format must be [MomentJS compatible](https://momentjs.com/docs/#/displaying/format/)! If you manually define an unsupported time format it will throw an Exception!
+* __locale__ - _OPTIONAL_ -  Set the module's locale. If you do not it will automatically use your app's `config('app.locale')`. If you manually define an unsupported locale it will throw an Exception!
+* __dateFormat__ - _OPTIONAL_ - Set a date format. If you do not provide it the module will automatically use the appropriate locale's date format. The format must be [MomentJS compatible](https://momentjs.com/docs/#/displaying/format/)!
+* __timeFormat__ - _OPTIONAL_ - Set a time format. If you do not provide it the module will automatically use `HH:mm:ss`. The format must be [MomentJS compatible](https://momentjs.com/docs/#/displaying/format/)! If you manually define an unsupported time format it will throw an Exception!
+* __placeholder__ - _OPTIONAL_ - Set a placeholder. If you do not want a placeholder set it to `false`.
+* __errorMessage__ - _OPTIONAL_ - Set a custom error message in case of an invalid date format. If you do not set it it will display an error message in English.
 
 Simply use `IntlDateTime` class instead of `DateTime` directly or alias it like the example below so you won't have to refactor too much existing code.
 

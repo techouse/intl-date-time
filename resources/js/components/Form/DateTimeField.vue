@@ -145,13 +145,6 @@
             handleError({errors}) {
                 this.$set(this, 'validationErrors', new Errors(errors))
                 this.$set(this, 'validationError', true)
-            },
-
-            /**
-             * Check if the date is valid using MomentJS
-             */
-            isValidDate(value) {
-                return !value ? true : moment(value, this.momentjsFormat).isValid()
             }
         },
     }

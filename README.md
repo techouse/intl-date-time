@@ -1,7 +1,9 @@
 # International DateTime
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/techouse/intl-date-time.svg?style=flat-square)](https://packagist.org/packages/techouse/intl-date-time)
-[![Total Downloads](https://img.shields.io/packagist/dt/techouse/intl-date-time.svg?style=flat-square)](https://packagist.org/packages/techouse/intl-date-time)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/techouse/intl-date-time.svg?style=flat)](https://packagist.org/packages/techouse/intl-date-time)
+[![Total Downloads](https://img.shields.io/packagist/dt/techouse/intl-date-time.svg?style=flat)](https://packagist.org/packages/techouse/intl-date-time)
+[![Licence](https://img.shields.io/packagist/l/techouse/intl-date-time.svg)](https://packagist.org/packages/techouse/intl-date-time)
+[![PHP version](https://img.shields.io/packagist/php-v/techouse/intl-date-time/dev-master.svg)](https://packagist.org/packages/techouse/intl-date-time)
 
 ##### International datepicker for Laravel Nova
 

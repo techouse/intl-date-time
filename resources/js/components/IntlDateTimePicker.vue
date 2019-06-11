@@ -85,18 +85,24 @@
         mounted() {
             this.localizeValidator(this.errorMessageLocale)
 
+            let config = {
+                enableTime:    this.enableTime,
+                enableSeconds: this.enableSeconds,
+                onChange:      this.onChange,
+                onValueUpdate: this.onChange,
+                onClose:       this.onChange,
+                dateFormat:    this.dateFormatString,
+                allowInput:    true,
+                time_24hr:     true,
+                locale:        locales.flatpickr[momentjsLocaleMapping[this.locale].translation]
+            }
+
+            if (this.field.firstDayOfWeek !== undefined && !isNaN(Number(this.field.firstDayOfWeek))) {
+                config.locale.firstDayOfWeek = Number(this.field.firstDayOfWeek)
+            }
+
             this.$nextTick(() => {
-                this.flatpickr = flatpickr(this.$refs[this.refName], {
-                    enableTime:    this.enableTime,
-                    enableSeconds: this.enableSeconds,
-                    onChange:      this.onChange,
-                    onValueUpdate: this.onChange,
-                    onClose:       this.onChange,
-                    dateFormat:    this.dateFormatString,
-                    allowInput:    true,
-                    time_24hr:     true,
-                    locale:        locales.flatpickr[momentjsLocaleMapping[this.locale].translation]
-                })
+                this.flatpickr = flatpickr(this.$refs[this.refName], config)
             })
         },
 

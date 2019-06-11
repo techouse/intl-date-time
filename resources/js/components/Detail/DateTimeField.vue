@@ -40,6 +40,8 @@
         },
 
         computed: {
+            userTimezone: () => Nova.config.userTimezone || moment.tz.guess(),
+
             dateFormat() {
                 return this.field.dateFormat || locales.momentjs[this.locale].L
             },
@@ -66,7 +68,11 @@
              * Get the localized date time.
              */
             localizedDateTime() {
-                return moment(this.field.value, this.defaultMomentJSFormat).format(this.momentjsFormat)
+                // fromAppTimezone
+                return moment(this.field.value, this.defaultMomentJSFormat).tz(Nova.config.timezone)
+                                                                           .clone()
+                                                                           .tz(this.userTimezone)
+                                                                           .format(this.momentjsFormat)
             },
         },
     }

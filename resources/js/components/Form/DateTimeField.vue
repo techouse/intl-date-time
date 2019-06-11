@@ -47,6 +47,8 @@
         },
 
         computed: {
+            userTimezone: () => Nova.config.userTimezone || moment.tz.guess(),
+
             dateFormat() {
                 if (this.field.dateFormat) {
                     try {
@@ -133,7 +135,15 @@
                 // If the field has a value let's convert it from the app's timezone
                 // into the user's local time to display in the field
                 if (this.value !== '') {
-                    this.$set(this, 'localizedValue', moment(this.value, this.defaultMomentJSFormat).format(this.format))
+                    this.$set(
+                        this,
+                        'localizedValue',
+                        // fromAppTimezone
+                        moment(this.value, this.defaultMomentJSFormat).tz(Nova.config.timezone)
+                                                                      .clone()
+                                                                      .tz(this.userTimezone)
+                                                                      .format(this.format)
+                    )
                 }
             },
 
@@ -144,7 +154,16 @@
                 this.$set(this, 'validationErrors', new Errors())
                 this.$set(this, 'validationError', false)
 
-                this.$set(this, 'value', value ? moment(value, this.format).format(this.defaultMomentJSFormat) : '')
+                this.$set(
+                    this,
+                    'value',
+                    // toAppTimezone
+                    value ? moment(value, this.format).tz(this.userTimezone)
+                                                      .clone()
+                                                      .tz(Nova.config.timezone)
+                                                      .format(this.defaultMomentJSFormat)
+                          : ''
+                )
             },
 
             handleError({errors}) {

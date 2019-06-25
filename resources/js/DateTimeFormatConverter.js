@@ -108,7 +108,7 @@ export default class DateTimeFormatConverter {
             let advance = false
 
             for (let f in mapping) {
-                if (mapping.hasOwnProperty(f)) {
+                if (Object.prototype.hasOwnProperty.call(mapping, f)) {
                     if (delimiters.indexOf(string.slice(0, 1)) > -1) {
                         // add the delimiter which is usually the next character
                         format += string.slice(0, 1)

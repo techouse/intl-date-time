@@ -67,7 +67,7 @@ const dateFnsFormatMapping = {
     ddd:  "E..EEE",
     DD:   "dd",
     Do:   "do",
-    D:    "D",
+    D:    "d",
     d:    "i",
     MMMM: "MMMM",
     MMM:  "MMM",

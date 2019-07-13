@@ -1,9 +1,11 @@
 {
     "name": "techouse/intl-date-time",
-    "description": "International datepicker for Laravel Nova.",
+    "description": "International datepicker field for Laravel Nova.",
     "keywords": [
         "laravel",
+        "laravel-nova",
         "nova",
+        "field",
         "datepicker",
         "date",
         "picker",

@@ -10,23 +10,26 @@
                                        :enable-seconds="enableSeconds"
                                        :placeholder="placeholder"
                                        :locale="locale"
-                                       :errorMessageLocale="errorMessageLocale"
+                                       :error-message-locale="errorMessageLocale"
                                        :class="validationError ? errorClass : null"
                                        class="w-full form-control form-input form-input-bordered"
                                        @change="handleChange"
-                                       @error="handleError"/>
+                                       @error="handleError"
+                />
                 <span class="text-80 text-sm ml-2">({{ userTimezone }})</span>
             </div>
-            <help-text v-if="firstError" class="error-text mt-2 text-danger">{{ firstError }}</help-text>
+            <help-text v-if="firstError" class="error-text mt-2 text-danger">
+                {{ firstError }}
+            </help-text>
         </template>
     </default-field>
 </template>
 
 <script>
-    import IntlDateTimePicker                                               from '../IntlDateTimePicker'
-    import DateTimeFormatConverter                                          from '../../DateTimeFormatConverter'
-    import {locale as locales}                                              from '../../Locale'
-    import {Errors, FormField, HandlesValidationErrors, InteractsWithDates} from 'laravel-nova'
+    import IntlDateTimePicker                                               from "../IntlDateTimePicker"
+    import DateTimeFormatConverter                                          from "../../DateTimeFormatConverter"
+    import {locale as locales}                                              from "../../Locale"
+    import {Errors, FormField, HandlesValidationErrors, InteractsWithDates} from "laravel-nova"
 
     export default {
         components: {
@@ -39,8 +42,8 @@
 
         data() {
             return {
-                defaultMomentJSFormat: 'YYYY-MM-DD HH:mm:ss',
-                localizedValue:        '',
+                defaultMomentJSFormat: "YYYY-MM-DD HH:mm:ss",
+                localizedValue:        "",
                 validationError:       false,
                 validationErrors:      new Errors()
             }
@@ -68,7 +71,7 @@
                     }
                 }
 
-                return ''
+                return ""
             },
 
             enableTime() {
@@ -80,15 +83,15 @@
             },
 
             locale() {
-                return this.field.locale || 'en-gb'
+                return this.field.locale || "en-gb"
             },
 
             errorMessageLocale() {
-                return this.field.errorMessageLocale || 'en'
+                return this.field.errorMessageLocale || "en"
             },
 
             momentjsFormat() {
-                return `${locales.momentjs[this.locale].L} ${this.timeFormat}`.replace(/[^ -~]+/g, '').trim()
+                return `${locales.momentjs[this.locale].L} ${this.timeFormat}`.replace(/[^ -~]+/g, "").trim()
             },
 
             defaultFlatpickrFormat() {
@@ -98,7 +101,7 @@
                     console.warn(e)
                 }
 
-                return 'd/m/Y H:i:S'
+                return "d/m/Y H:i:S"
             },
 
             format() {
@@ -106,11 +109,11 @@
             },
 
             placeholder() {
-                if ('placeholder' in this.field) {
+                if ("placeholder" in this.field) {
                     if (this.field.placeholder) {
                         return this.field.placeholder
                     } else if (this.field.placeholder === false) {
-                        return ''
+                        return ""
                     }
                 }
                 return this.momentjsFormat
@@ -130,14 +133,14 @@
              */
             setInitialValue() {
                 // Set the initial value of the field
-                this.$set(this, 'value', this.field.value || '')
+                this.$set(this, "value", this.field.value || "")
 
                 // If the field has a value let's convert it from the app's timezone
                 // into the user's local time to display in the field
-                if (this.value !== '') {
+                if (this.value !== "") {
                     this.$set(
                         this,
-                        'localizedValue',
+                        "localizedValue",
                         // fromAppTimezone
                         moment(this.value, this.defaultMomentJSFormat).tz(Nova.config.timezone)
                                                                       .clone()
@@ -151,24 +154,24 @@
              * Update the field's internal value when it's value changes and is valid at the same time
              */
             handleChange(value) {
-                this.$set(this, 'validationErrors', new Errors())
-                this.$set(this, 'validationError', false)
+                this.$set(this, "validationErrors", new Errors())
+                this.$set(this, "validationError", false)
 
                 this.$set(
                     this,
-                    'value',
+                    "value",
                     // toAppTimezone
                     value ? moment(value, this.format).tz(this.userTimezone)
                                                       .clone()
                                                       .tz(Nova.config.timezone)
                                                       .format(this.defaultMomentJSFormat)
-                          : ''
+                          : ""
                 )
             },
 
             handleError({errors}) {
-                this.$set(this, 'validationErrors', new Errors(errors))
-                this.$set(this, 'validationError', true)
+                this.$set(this, "validationErrors", new Errors(errors))
+                this.$set(this, "validationError", true)
             }
         },
     }

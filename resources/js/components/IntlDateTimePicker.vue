@@ -1,25 +1,30 @@
 <template>
     <input :ref="refName"
+           v-mask="maskFormat"
            :disabled="disabled"
            :dusk="field.attribute"
            :class="{'!cursor-not-allowed': disabled}"
            :value="value"
            :name="field.name"
            :placeholder="placeholder"
-           v-mask="maskFormat"
-           type="text">
+           type="text"
+    >
 </template>
 
 <script>
-    import flatpickr               from 'flatpickr'
-    import DateTimeFormatConverter from '../DateTimeFormatConverter'
-    import {momentjsLocaleMapping} from '../InternationalMapper'
-    import {locale as locales}     from '../Locale'
-    import {mask}                  from 'vue-the-mask'
-    import {Validator}             from 'vee-validate'
-    import {Errors}                from 'laravel-nova'
+    import flatpickr               from "flatpickr"
+    import DateTimeFormatConverter from "../DateTimeFormatConverter"
+    import {momentjsLocaleMapping} from "../InternationalMapper"
+    import {locale as locales}     from "../Locale"
+    import {mask}                  from "vue-the-mask"
+    import {Validator}             from "vee-validate"
+    import {Errors}                from "laravel-nova"
 
     export default {
+
+        directives: {
+            mask
+        },
         props: {
             field:              {
                 type:     Object,
@@ -28,7 +33,7 @@
             value:              {
                 type:     String,
                 required: false,
-                default:  ''
+                default:  ""
             },
             disabled:           {
                 type:    Boolean,
@@ -36,11 +41,11 @@
             },
             dateFormat:         {
                 type:    String,
-                default: ''
+                default: ""
             },
             timeFormat:         {
                 type:    String,
-                default: ''
+                default: ""
             },
             twelveHourTime:     {
                 type:    Boolean,
@@ -56,20 +61,16 @@
             },
             locale:             {
                 type:    String,
-                default: 'en-gb'
+                default: "en-gb"
             },
             errorMessageLocale: {
                 type:    String,
-                default: 'en'
+                default: "en"
             },
             placeholder:        {
                 type:    String,
-                default: ''
+                default: ""
             }
-        },
-
-        directives: {
-            mask
         },
 
         data() {
@@ -79,6 +80,34 @@
                 validator:        new Validator(),
                 validationError:  false,
                 validationErrors: new Errors()
+            }
+        },
+
+        computed: {
+            momentjsFormat() {
+                return `${locales.momentjs[this.locale].L} ${this.timeFormat}`.replace(/[^ -~]+/g, "").trim()
+            },
+
+            dateFormatString() {
+                if (this.dateFormat) {
+                    return this.dateFormat
+                } else {
+                    try {
+                        return DateTimeFormatConverter.momentToFlatpickr(this.momentjsFormat)
+                    } catch (e) {
+                        console.warn(e)
+                    }
+
+                    return "d/m/Y H:i:S"
+                }
+            },
+
+            maskFormat() {
+                return this.momentjsFormat.replace(/\w/g, "#")
+            },
+
+            dateValidationRule() {
+                return `date_format:${DateTimeFormatConverter.momentToDateFns(this.momentjsFormat)}`
             }
         },
 
@@ -106,34 +135,6 @@
             })
         },
 
-        computed: {
-            momentjsFormat() {
-                return `${locales.momentjs[this.locale].L} ${this.timeFormat}`.replace(/[^ -~]+/g, '').trim()
-            },
-
-            dateFormatString() {
-                if (this.dateFormat) {
-                    return this.dateFormat
-                } else {
-                    try {
-                        return DateTimeFormatConverter.momentToFlatpickr(this.momentjsFormat)
-                    } catch (e) {
-                        console.warn(e)
-                    }
-
-                    return 'd/m/Y H:i:S'
-                }
-            },
-
-            maskFormat() {
-                return this.momentjsFormat.replace(/\w/g, '#')
-            },
-
-            dateValidationRule() {
-                return `date_format:${DateTimeFormatConverter.momentToDateFns(this.momentjsFormat)}`
-            }
-        },
-
         methods: {
             onChange(selectedDates, dateStr, instance) {
                 if (dateStr) {
@@ -141,19 +142,19 @@
                         .verify(dateStr, this.dateValidationRule, {name: this.field.name})
                         .then(({valid, errors}) => {
                             if (valid) {
-                                this.$set(this, 'validationErrors', new Errors())
-                                this.$set(this, 'validationError', false)
-                                this.$emit('change', dateStr)
+                                this.$set(this, "validationErrors", new Errors())
+                                this.$set(this, "validationError", false)
+                                this.$emit("change", dateStr)
                             } else {
-                                this.$set(this, 'validationErrors', new Errors(errors))
-                                this.$set(this, 'validationError', true)
-                                this.$emit('error', this.validationErrors)
+                                this.$set(this, "validationErrors", new Errors(errors))
+                                this.$set(this, "validationError", true)
+                                this.$emit("error", this.validationErrors)
                             }
                         })
                 } else {
-                    this.$set(this, 'validationErrors', new Errors())
-                    this.$set(this, 'validationError', false)
-                    this.$emit('change', dateStr)
+                    this.$set(this, "validationErrors", new Errors())
+                    this.$set(this, "validationError", false)
+                    this.$emit("change", dateStr)
                 }
             },
 

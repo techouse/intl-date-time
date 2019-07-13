@@ -1,5 +1,5 @@
-import {flatpickrLocaleMapping, momentjsLocaleMapping} from './InternationalMapper'
-import {locales}                                       from 'moment/src/locale/extracted'
+import {flatpickrLocaleMapping, momentjsLocaleMapping} from "./InternationalMapper"
+import {locales}                                       from "moment/src/locale/extracted"
 
 let flatpickrLocales = {},
     momentjsLocales  = {}
@@ -13,6 +13,6 @@ for (const code in momentjsLocaleMapping) {
 }
 
 export const locale = {
-    'flatpickr': flatpickrLocales,
-    'momentjs':  momentjsLocales
+    "flatpickr": flatpickrLocales,
+    "momentjs":  momentjsLocales
 }

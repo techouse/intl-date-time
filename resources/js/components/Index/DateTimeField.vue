@@ -4,8 +4,8 @@
 </template>
 
 <script>
-    import {locale as locales}  from '../../Locale'
-    import {InteractsWithDates} from 'laravel-nova'
+    import {locale as locales}  from "../../Locale"
+    import {InteractsWithDates} from "laravel-nova"
 
     export default {
         mixins: [InteractsWithDates],
@@ -23,7 +23,7 @@
 
         data() {
             return {
-                defaultMomentJSFormat: 'YYYY-MM-DD HH:mm:ss',
+                defaultMomentJSFormat: "YYYY-MM-DD HH:mm:ss",
             }
         },
 
@@ -41,15 +41,15 @@
                     }
                 }
 
-                return ''
+                return ""
             },
 
             locale() {
-                return this.field.locale || 'en-gb'
+                return this.field.locale || "en-gb"
             },
 
             momentjsFormat() {
-                return `${this.dateFormat} ${this.timeFormat}`.replace(/[^ -~]+/g, '').trim()
+                return `${this.dateFormat} ${this.timeFormat}`.replace(/[^ -~]+/g, "").trim()
             },
 
             /**

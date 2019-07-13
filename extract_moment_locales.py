@@ -1,11 +1,31 @@
-#!/usr/bin/env python
-import io
-import json
-import os
+import codecs
 import re
+from json import dumps
+from os import walk
+from os.path import dirname, isdir, join, abspath
 
-moment_locale_directory = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)),
+ESCAPE_SEQUENCE_RE = re.compile(
+    r"""
+    ( \\U........      # 8-digit hex escapes
+    | \\u....          # 4-digit hex escapes
+    | \\x..            # 2-digit hex escapes
+    | \\[0-7]{1,3}     # Octal escapes
+    | \\N\{[^}]+\}     # Unicode characters by name
+    | \\[\\'"abfnrtv]  # Single-character escapes
+    )""",
+    re.UNICODE | re.VERBOSE,
+)
+
+
+def decode_escapes(s):
+    def decode_match(match):
+        return codecs.decode(match.group(0), "unicode-escape")
+
+    return ESCAPE_SEQUENCE_RE.sub(decode_match, s)
+
+
+moment_locale_directory = join(
+    dirname(abspath(__file__)),
     "node_modules",
     "moment",
     "src",
@@ -23,11 +43,11 @@ long_date_format_patterns = (
 
 locales = {}
 
-if os.path.isdir(moment_locale_directory):
-    for root, dirs, files in os.walk(moment_locale_directory):
+if isdir(moment_locale_directory):
+    for root, dirs, files in walk(moment_locale_directory):
         for file in files:
             if file.endswith(".js"):
-                with io.open(os.path.join(root, file), "r", encoding="utf-8") as locale:
+                with open(join(root, file), "r", encoding="utf-8") as locale:
                     long_date_format = {}
                     for line in locale.readlines():
                         line = " ".join(line.split()).strip()
@@ -36,9 +56,8 @@ if os.path.isdir(moment_locale_directory):
                             if matches:
                                 try:
                                     key = matches.group(1)
-                                    value = matches.group(4)
-                                    if key and value:
-                                        long_date_format[key] = value
+                                    value = decode_escapes(matches.group(4))
+                                    long_date_format[key] = value
                                 except IndexError:
                                     pass
 
@@ -48,10 +67,5 @@ if os.path.isdir(moment_locale_directory):
                             if locale_name == "en-gb":
                                 locales["en"] = long_date_format
 
-with io.open(
-        os.path.join(moment_locale_directory, "extracted.js"), "w", encoding="utf-8"
-) as outfile:
-    outfile.write(
-        "export const locales = "
-        + json.dumps(locales, ensure_ascii=False, sort_keys=True, indent=4)
-    )
+with open(join(moment_locale_directory, "extracted.js"), "w", encoding="utf-8") as outfile:
+    outfile.write("export const locales = " + dumps(locales, ensure_ascii=False, sort_keys=True, indent=4))

@@ -6,8 +6,8 @@
 export const flatpickrLocaleMapping = {
     default:  {translation: "en-gb", name: "english"},
     ar:       {translation: "ar", name: "Arabic"},
-    at:       {translation: "de-at", name: "Austrian German"},
-    az:       {translation: "az", name: "Azerbaijani"},
+    at:       {translation: "de-at", name: "Austria"},
+    az:       {translation: "az", name: "Azerbaijan"},
     be:       {translation: "be", name: "Belarusian"},
     bg:       {translation: "bg", name: "Bulgarian"},
     bn:       {translation: "bn", name: "Bangla"},
@@ -24,7 +24,7 @@ export const flatpickrLocaleMapping = {
     fi:       {translation: "fi", name: "Finnish"},
     fo:       {translation: "fo", name: "Faroese"},
     fr:       {translation: "fr", name: "French"},
-    ga:       {translation: "ga", name: "Irish Gaelic"},
+    ga:       {translation: "ga", name: "Irish"},
     gr:       {translation: "el", name: "Greek"},
     he:       {translation: "he", name: "Hebrew"},
     hi:       {translation: "hi", name: "Hindi"},
@@ -55,14 +55,14 @@ export const flatpickrLocaleMapping = {
     sl:       {translation: "sl", name: "Slovenian"},
     sq:       {translation: "sq", name: "Albanian"},
     sr:       {translation: "sr", name: "Serbian"},
-    "sr-cyr": {translation: "sr-cyrl", name: "Serbian Cyrillic"},
+    "sr-cyr": {translation: "sr-cyrl", name: "SerbianCyrillic"},
     sv:       {translation: "sv", name: "Swedish"},
     th:       {translation: "th", name: "Thai"},
     tr:       {translation: "tr", name: "Turkish"},
     uk:       {translation: "uk", name: "Ukrainian"},
     vn:       {translation: "vi", name: "Vietnamese"},
     zh:       {translation: "zh-cn", name: "Mandarin"},
-    "zh-tw":  {translation: "zh-tw", name: "Taiwanese Mandarin"},
+    "zh-tw":  {translation: "zh-tw", name: "MandarinTraditional"},
 }
 
 export const momentjsLocaleMapping = {

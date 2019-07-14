@@ -31,7 +31,7 @@
         directives: {
             mask
         },
-        props: {
+        props:      {
             field:              {
                 type:     Object,
                 required: true,
@@ -76,6 +76,14 @@
             placeholder:        {
                 type:    String,
                 default: ""
+            },
+            minDate:            {
+                type:    Date,
+                default: null
+            },
+            maxDate:            {
+                type:    Date,
+                default: null
             }
         },
 
@@ -130,6 +138,14 @@
                 allowInput:    true,
                 time_24hr:     true,
                 locale:        locales.flatpickr[momentjsLocaleMapping[this.locale].translation]
+            }
+
+            if (this.minDate) {
+                config.minDate = this.minDate.format(this.momentjsFormat)
+            }
+
+            if (this.maxDate) {
+                config.maxDate = this.maxDate.format(this.momentjsFormat)
             }
 
             if (this.field.firstDayOfWeek !== undefined && !isNaN(Number(this.field.firstDayOfWeek))) {

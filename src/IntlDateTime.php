@@ -270,59 +270,77 @@ class IntlDateTime extends DateTime
     }
 
     /**
-     * @param $format
+     * @param $value
      * @return mixed
      */
-    public function dateFormat($format)
+    public function dateFormat($value)
     {
-        if ($format) {
-            return $this->withMeta([__FUNCTION__ => $format]);
+        if ($value) {
+            return $this->withMeta([__FUNCTION__ => $value]);
         }
     }
 
     /**
-     * @param $format
+     * @param $value
      * @return mixed
      * @throws \Techouse\IntlDateTime\TimeFormatNotSupportedException
      */
-    public function timeFormat($format)
+    public function timeFormat($value)
     {
-        if ($format) {
-            if (preg_match('/^[Hh]{1,2}:[m]{1,2}(:[s]{1,2})?$/', $format)) {
-                return $this->withMeta([__FUNCTION__ => $format]);
+        if ($value) {
+            if (preg_match('/^[Hh]{1,2}:[m]{1,2}(:[s]{1,2})?$/', $value)) {
+                return $this->withMeta([__FUNCTION__ => $value]);
             }
 
-            throw new TimeFormatNotSupportedException("Time format {$format} is not supported by MomentJS! Please refer to the module documentation.");
+            throw new TimeFormatNotSupportedException("Time format {$value} is not supported by MomentJS! Please refer to the module documentation.");
         }
+    }
+
+    /**
+     * @param \DateTime|null $value
+     * @return mixed
+     */
+    public function minDate(?\DateTime $value = null)
+    {
+        return $this->withMeta([__FUNCTION__ => $value ? $value->format('Y-m-d') : null]);
+    }
+
+    /**
+     * @param \DateTime|null $value
+     * @return mixed
+     */
+    public function maxDate(?\DateTime $value = null)
+    {
+        return $this->withMeta([__FUNCTION__ => $value ? $value->format('Y-m-d') : null]);
     }
 
     /**
      * @param $placeholder
      * @return mixed
      */
-    public function placeholder($placeholder = null)
+    public function placeholder($value = null)
     {
-        return $this->withMeta([__FUNCTION__ => $placeholder]);
+        return $this->withMeta([__FUNCTION__ => $value]);
     }
 
     /**
-     * @param $locale
+     * @param $value
      * @return mixed
      * @throws \Techouse\IntlDateTime\LocaleNotSupportedException
      */
-    public function locale($locale)
+    public function locale($value)
     {
-        if ($locale) {
-            $locale = strtolower(trim($locale));
+        if ($value) {
+            $value = strtolower(trim($value));
 
-            if (!in_array($locale, self::$momentjsSupportedLocales, true)) {
-                throw new LocaleNotSupportedException("Locale {$locale} is not supported by MomentJS. Please consult the module documentation.");
+            if (!in_array($value, self::$momentjsSupportedLocales, true)) {
+                throw new LocaleNotSupportedException("Locale {$value} is not supported by MomentJS. Please consult the module documentation.");
             } else {
-                $this->locale = $locale;
+                $this->locale = $value;
             }
 
-            if (array_key_exists($locale, self::$translatedMomentJSLocalesToErrorLocales) && self::$translatedMomentJSLocalesToErrorLocales[$locale]) {
-                $this->errorLocale = self::$translatedMomentJSLocalesToErrorLocales[$locale];
+            if (array_key_exists($value, self::$translatedMomentJSLocalesToErrorLocales) && self::$translatedMomentJSLocalesToErrorLocales[$value]) {
+                $this->errorLocale = self::$translatedMomentJSLocalesToErrorLocales[$value];
             }
 
             if ($this->locale === 'en') {
@@ -335,30 +353,30 @@ class IntlDateTime extends DateTime
     }
 
     /**
-     * @param $message
+     * @param $value
      * @return mixed
      */
-    public function errorMessage($message)
+    public function errorMessage($value)
     {
-        if ($message) {
-            return $this->withMeta([__FUNCTION__ => $message]);
+        if ($value) {
+            return $this->withMeta([__FUNCTION__ => $value]);
         }
     }
 
     /**
      * Has to be one of these https://github.com/baianat/vee-validate/tree/master/locale
      *
-     * @param $locale
+     * @param $value
      * @return mixed
      * @throws \Techouse\IntlDateTime\LocaleNotSupportedException
      */
-    public function errorMessageLocale($locale)
+    public function errorMessageLocale($value)
     {
-        if ($locale) {
-            if (!in_array($locale, self::$errorSupportedLocales, true)) {
-                throw new LocaleNotSupportedException("Locale {$locale} is not supported by VeeValidate. Please consult the module documentation.");
+        if ($value) {
+            if (!in_array($value, self::$errorSupportedLocales, true)) {
+                throw new LocaleNotSupportedException("Locale {$value} is not supported by VeeValidate. Please consult the module documentation.");
             } else {
-                $this->errorLocale = $locale;
+                $this->errorLocale = $value;
             }
 
             return $this->withMeta([__FUNCTION__ => $this->errorLocale]);

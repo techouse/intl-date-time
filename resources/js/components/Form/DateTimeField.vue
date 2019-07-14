@@ -8,6 +8,8 @@
                                        :time-format="timeFormat"
                                        :enable-time="enableTime"
                                        :enable-seconds="enableSeconds"
+                                       :min-date="minDate"
+                                       :max-date="maxDate"
                                        :placeholder="placeholder"
                                        :locale="locale"
                                        :error-message-locale="errorMessageLocale"
@@ -124,6 +126,14 @@
                     return this.field.errorMessage || this.validationErrors.errors[0]
                 }
                 return null
+            },
+
+            minDate() {
+                return this.field.minDate ? moment(this.field.minDate) : null
+            },
+
+            maxDate() {
+                return this.field.maxDate ? moment(this.field.maxDate) : null
             }
         },
 

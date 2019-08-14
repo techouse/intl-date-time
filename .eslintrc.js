@@ -9,6 +9,7 @@ module.exports = {
         "plugin:vue/recommended"
     ],
     globals:       {
+        "process": true,
         "Nova":    true,
         "moment":  true,
         "require": true,

@@ -16,7 +16,7 @@
         "cross-env": "^5.0.0",
         "eslint": "^6.0.1",
         "eslint-plugin-vue": "^5.2.3",
-        "flatpickr": "^4.6.1",
+        "flatpickr": "^4.6.2",
         "laravel-mix": "^1.0",
         "laravel-nova": "^1.0",
         "moment": "^2.24.0",

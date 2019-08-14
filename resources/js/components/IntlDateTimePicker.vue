@@ -78,11 +78,11 @@
                 default: ""
             },
             minDate:            {
-                type:    Date,
+                type:    [Date, Object],
                 default: null
             },
             maxDate:            {
-                type:    Date,
+                type:    [Date, Object],
                 default: null
             }
         },

@@ -32,6 +32,7 @@ The module itself offers a few optional configurations:
 * __placeholder__ - _OPTIONAL_ - Set a placeholder. If you do not want a placeholder set it to `false`.
 * __errorMessage__ - _OPTIONAL_ - Set a custom error message in case of an invalid date format. If you do not set it it will display an error message in the current locale.
 * __errorMessageLocale__ - _OPTIONAL_ - Set a custom error message locale. If not set it equals the set `locale` or your app's `config('app.locale')`. If you manually define an unsupported locale it will throw an Exception! [Here is the list of all supported locales](https://github.com/baianat/vee-validate/tree/master/locale).
+* __hideUserTimeZone__ - _OPTIONAL_ - When applied hides the user time zone next to the form field. Default is `false`.
 
 Simply use `IntlDateTime` class instead of `DateTime` directly or alias it like the example below so you won't have to refactor too much existing code.
 
@@ -117,6 +118,12 @@ class User extends Resource
                      * Set a maximum/latest date (inclusively) allowed for selection.
                      */
                     ->maxDate(Carbon::today()),
+            
+            DateTime::make(__('Day you got married'), 'day_you_got_married')
+                    /**
+                     * Hide the user time zone next to the form input field.
+                     */
+                    ->hideUserTimeZone()
         ];
     }
 

@@ -26,6 +26,11 @@ class IntlDateTime extends DateTime
     protected $errorLocale = 'en';
 
     /**
+     * @var boolean
+     */
+    protected $displayUserTimeZone = true;
+
+    /**
      * @var array
      */
     private static $momentjsSupportedLocales = [
@@ -250,8 +255,9 @@ class IntlDateTime extends DateTime
             }
         }
 
-        $this->withMeta(['locale'             => $this->locale,
-                         'errorMessageLocale' => $this->errorLocale]);
+        $this->withMeta(['locale'              => $this->locale,
+                         'errorMessageLocale'  => $this->errorLocale,
+                         'displayUserTimeZone' => $this->displayUserTimeZone]);
     }
 
     /**
@@ -383,5 +389,15 @@ class IntlDateTime extends DateTime
 
             return $this->withMeta([__FUNCTION__ => $this->errorLocale]);
         }
+    }
+
+    /**
+     * Hides the user time zone
+     */
+    public function hideUserTimeZone()
+    {
+        $this->displayUserTimeZone = false;
+
+        return $this->withMeta(['displayUserTimeZone' => $this->displayUserTimeZone]);
     }
 }

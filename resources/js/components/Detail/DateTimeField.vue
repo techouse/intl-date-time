@@ -28,7 +28,7 @@
                 required: true
             },
             resourceId:   {
-                type:     Number | String,
+                type:     [Number, String],
                 required: true
             },
             field:        {

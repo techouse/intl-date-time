@@ -383,9 +383,9 @@ class IntlDateTime extends DateTime
         if ($value) {
             if (!in_array($value, self::$errorSupportedLocales, true)) {
                 throw new LocaleNotSupportedException("Locale {$value} is not supported by VeeValidate. Please consult the module documentation.");
-            } else {
-                $this->errorLocale = $value;
             }
+
+            $this->errorLocale = $value;
 
             return $this->withMeta([__FUNCTION__ => $this->errorLocale]);
         }

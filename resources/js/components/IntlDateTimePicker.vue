@@ -188,7 +188,7 @@
                     .then(locale => {
                         this.validator.localize(localeName, locale)
                     })
-                    .catch(error => {
+                    .catch(() => {
                         console.warn(`The error messages do not support the '${localeName}' locale. Defaulting back to English. Please define another locale manually with errorMessageLocale().`)
                     })
             }

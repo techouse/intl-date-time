@@ -158,7 +158,7 @@
         },
 
         methods: {
-            onChange(selectedDates, dateStr, instance) {
+            onChange(selectedDates, dateStr) {
                 if (dateStr) {
                     this.validator
                         .verify(dateStr, this.dateValidationRule, {name: this.field.name})

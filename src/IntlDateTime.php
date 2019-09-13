@@ -343,9 +343,9 @@ class IntlDateTime extends DateTime
 
             if (!in_array($value, self::$momentjsSupportedLocales, true)) {
                 throw new LocaleNotSupportedException("Locale {$value} is not supported by MomentJS. Please consult the module documentation.");
-            } else {
-                $this->locale = $value;
             }
+
+            $this->locale = $value;
 
             if (array_key_exists($value, self::$translatedMomentJSLocalesToErrorLocales) && self::$translatedMomentJSLocalesToErrorLocales[$value]) {
                 $this->errorLocale = self::$translatedMomentJSLocalesToErrorLocales[$value];

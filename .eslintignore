@@ -1,3 +1,4 @@
 /webpack.*.js
+/postcss.*.js
 /.babelrc
 /dist/js/*.js

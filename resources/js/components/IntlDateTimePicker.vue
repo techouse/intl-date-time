@@ -20,12 +20,6 @@
     import {Validator}             from "vee-validate"
     import {Errors}                from "laravel-nova"
 
-    /**
-     * Setting __webpack_public_path__ is a hacky solution but there is no other
-     * way changing the URL from which WebPack fetches these localization files.
-     */
-    __webpack_public_path__ = ("/nova-vendor/intl-date-time/" + __webpack_public_path__)
-
     export default {
 
         directives: {
@@ -184,7 +178,7 @@
                 /**
                  * Asynchronously load the locale file then localize the validator with it
                  */
-                import(`../../../node_modules/vee-validate/dist/locale/${localeName}` /* webpackChunkName: "js/validation_locales/" */)
+                import(/* webpackChunkName: "validation_locales/[request]" */ `../../../node_modules/vee-validate/dist/locale/${localeName}`)
                     .then(locale => {
                         this.validator.localize(localeName, locale)
                     })

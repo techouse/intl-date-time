@@ -28,6 +28,7 @@ const config = {
         publicPath:    "/nova-vendor/intl-date-time/",
         filename:      "js/[name].js",
         chunkFilename: "js/[name].js",
+        jsonpFunction: "wpJsonpIntlDateTime"
     },
     optimization: {},
     resolve:      {
@@ -104,8 +105,8 @@ if (production) {
     config.optimization.minimizer = [
         new OptimizeCSSAssetsPlugin(),
         new TerserPlugin({
-            cache:         true,
-            parallel:      true,
+            cache:    true,
+            parallel: true,
         }),
     ]
 }

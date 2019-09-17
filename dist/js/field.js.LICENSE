@@ -1,3 +1,10 @@
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
 /* flatpickr v4.6.2, @license MIT */
 
 /*! *****************************************************************************
@@ -14,9 +21,3 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
-
-/**
-  * vee-validate v2.2.15
-  * (c) 2019 Abdelrahman Awad
-  * @license MIT
-  */

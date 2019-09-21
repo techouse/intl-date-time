@@ -23,4 +23,13 @@ class IntlDateTimeController extends Controller
         }
         abort(404);
     }
+
+    public function asset(NovaRequest $request, $asset)
+    {
+        if (File::exists(__DIR__ . "/../dist/js/{$asset}.js")) {
+            return response(File::get(__DIR__ . "/../dist/js/{$asset}.js"))
+                ->header('Content-Type', 'application/javascript');
+        }
+        abort(404);
+    }
 }

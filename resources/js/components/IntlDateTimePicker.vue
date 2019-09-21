@@ -12,13 +12,15 @@
 </template>
 
 <script>
-    import flatpickr               from "flatpickr"
-    import DateTimeFormatConverter from "../DateTimeFormatConverter"
-    import {momentjsLocaleMapping} from "../InternationalMapper"
-    import {locale as locales}     from "../Locale"
-    import {mask}                  from "vue-the-mask"
-    import {Validator}             from "vee-validate"
-    import {Errors}                from "laravel-nova"
+    import flatpickr                    from "flatpickr"
+    import DateTimeFormatConverter      from "../DateTimeFormatConverter"
+    import {momentjsLocaleMapping}      from "../InternationalMapper"
+    import {locale as locales}          from "../Locale"
+    import {mask}                       from "vue-the-mask"
+    import {extend, localize, validate} from "vee-validate"
+    //import date_format                  from "../validation/rules/date_format"
+    import {Errors}                     from "laravel-nova"
+    // import date_format                  from "../validation/rules/date_format"
 
     export default {
 
@@ -85,7 +87,6 @@
             return {
                 refName:          "intlDatepickerInput",
                 flatpickr:        null,
-                validator:        new Validator(),
                 validationError:  false,
                 validationErrors: new Errors()
             }
@@ -120,7 +121,12 @@
         },
 
         mounted() {
-            this.localizeValidator(this.errorMessageLocale)
+            import(/* webpackChunkName: "date_format_rule" */ "../validation/rules/date_format")
+                .then(date_format => {
+                    extend("date_format", {...date_format})
+
+                    this.loadLocale(this.errorMessageLocale)
+                })
 
             let config = {
                 enableTime:    this.enableTime,
@@ -154,8 +160,7 @@
         methods: {
             onChange(selectedDates, dateStr) {
                 if (dateStr) {
-                    this.validator
-                        .verify(dateStr, this.dateValidationRule, {name: this.field.name})
+                    validate(dateStr, this.dateValidationRule, {name: this.field.name})
                         .then(({valid, errors}) => {
                             if (valid) {
                                 this.$set(this, "validationErrors", new Errors())
@@ -174,16 +179,16 @@
                 }
             },
 
-            localizeValidator(localeName) {
+            loadLocale(code) {
                 /**
                  * Asynchronously load the locale file then localize the validator with it
                  */
-                import(/* webpackChunkName: "validation_locales/[request]" */ `../../../node_modules/vee-validate/dist/locale/${localeName}`)
+                import(/* webpackChunkName: "validation_locales/[request]" */ `vee-validate/dist/locale/${code}.json`)
                     .then(locale => {
-                        this.validator.localize(localeName, locale)
+                        localize(code, locale)
                     })
                     .catch(() => {
-                        console.warn(`The error messages do not support the '${localeName}' locale. Defaulting back to English. Please define another locale manually with errorMessageLocale().`)
+                        console.warn(`The error messages do not support the '${code}' locale. Defaulting back to English. Please define another locale manually with errorMessageLocale().`)
                     })
             }
         },

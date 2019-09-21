@@ -5,6 +5,9 @@
 [![Licence](https://img.shields.io/packagist/l/techouse/intl-date-time.svg)](https://packagist.org/packages/techouse/intl-date-time)
 [![PHP version](https://img.shields.io/packagist/php-v/techouse/intl-date-time/dev-master.svg)](https://packagist.org/packages/techouse/intl-date-time)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3eddbad356a241cba632fd70d3b991e0)](https://www.codacy.com/manual/techouse/intl-date-time?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=techouse/intl-date-time&amp;utm_campaign=Badge_Grade)
+[![GitHub stars](https://img.shields.io/github/stars/techouse/intl-date-time.svg?style=social&label=Star&maxAge=2592000)](https://github.com/techouse/intl-date-time/stargazers)
+
+
 
 ##### International datepicker for Laravel Nova
 

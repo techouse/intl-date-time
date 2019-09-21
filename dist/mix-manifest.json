@@ -1,7 +1,12 @@
 {
+  "vendors~detail-intl-date-time~form-intl-date-time~index-intl-date-time.js": "/nova-vendor/intl-date-time/js/vendors~detail-intl-date-time~form-intl-date-time~index-intl-date-time.js",
   "date_format_rule.js": "/nova-vendor/intl-date-time/js/date_format_rule.js",
+  "detail-intl-date-time.js": "/nova-vendor/intl-date-time/js/detail-intl-date-time.js",
   "field.css": "/nova-vendor/intl-date-time/css/field.css",
   "field.js": "/nova-vendor/intl-date-time/js/field.js",
+  "form-intl-date-time.css": "/nova-vendor/intl-date-time/css/form-intl-date-time.css",
+  "form-intl-date-time.js": "/nova-vendor/intl-date-time/js/form-intl-date-time.js",
+  "index-intl-date-time.js": "/nova-vendor/intl-date-time/js/index-intl-date-time.js",
   "validation_locales/ar-json.js": "/nova-vendor/intl-date-time/js/validation_locales/ar-json.js",
   "validation_locales/az-json.js": "/nova-vendor/intl-date-time/js/validation_locales/az-json.js",
   "validation_locales/bg-json.js": "/nova-vendor/intl-date-time/js/validation_locales/bg-json.js",
@@ -51,5 +56,7 @@
   "validation_locales/zh_CN-json.js": "/nova-vendor/intl-date-time/js/validation_locales/zh_CN-json.js",
   "validation_locales/zh_TW-json.js": "/nova-vendor/intl-date-time/js/validation_locales/zh_TW-json.js",
   "vendors~date_format_rule.js": "/nova-vendor/intl-date-time/js/vendors~date_format_rule.js",
-  "js/field.js.LICENSE": "/nova-vendor/intl-date-time/js/field.js.LICENSE"
+  "vendors~form-intl-date-time.js": "/nova-vendor/intl-date-time/js/vendors~form-intl-date-time.js",
+  "js/vendors~detail-intl-date-time~form-intl-date-time~index-intl-date-time.js.LICENSE": "/nova-vendor/intl-date-time/js/vendors~detail-intl-date-time~form-intl-date-time~index-intl-date-time.js.LICENSE",
+  "js/vendors~form-intl-date-time.js.LICENSE": "/nova-vendor/intl-date-time/js/vendors~form-intl-date-time.js.LICENSE"
 }

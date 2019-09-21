@@ -14,8 +14,11 @@ use Techouse\IntlDateTime\IntlDateTimeController;
 |
 */
 
-Route::get('/js/{asset}.js', IntlDateTimeController::class . '@asset')
-     ->name('intl_date_time_asset');
+Route::get('/js/{asset}.js', IntlDateTimeController::class . '@jsAsset')
+     ->name('intl_date_time_js_asset');
+
+Route::get('/css/{asset}.css', IntlDateTimeController::class . '@cssAsset')
+     ->name('intl_date_time_css_asset');
 
 Route::get('/js/validation_locales/{locale}.js', IntlDateTimeController::class . '@validationLocale')
      ->name('intl_date_time_validation_locales');

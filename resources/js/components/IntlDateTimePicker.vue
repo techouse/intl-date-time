@@ -18,9 +18,7 @@
     import {locale as locales}          from "../Locale"
     import {mask}                       from "vue-the-mask"
     import {extend, localize, validate} from "vee-validate"
-    //import date_format                  from "../validation/rules/date_format"
     import {Errors}                     from "laravel-nova"
-    // import date_format                  from "../validation/rules/date_format"
 
     export default {
 

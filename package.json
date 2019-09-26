@@ -11,20 +11,20 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=webpack.config.js"
     },
     "devDependencies": {
-        "@babel/core": "^7.5.5",
+        "@babel/core": "^7.6.2",
         "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-        "@babel/preset-env": "^7.5.5",
+        "@babel/preset-env": "^7.6.2",
         "autoprefixer": "^9.6.1",
         "babel-eslint": "^10.0.2",
         "babel-loader": "^8.0.6",
         "clean-webpack-plugin": "^3.0.0",
         "cross-env": "^6.0.0",
         "css-loader": "^3.2.0",
-        "date-fns": "^2.2.1",
+        "date-fns": "^2.3.0",
         "eslint": "^6.3.0",
         "eslint-plugin-vue": "^5.2.3",
         "fibers": "^4.0.1",
-        "flatpickr": "^4.6.2",
+        "flatpickr": "^4.6.3",
         "laravel-nova": "^1.0",
         "mini-css-extract-plugin": "^0.8.0",
         "moment": "^2.24.0",
@@ -37,14 +37,14 @@
         "sass-loader": "^8.0.0",
         "style-loader": "^1.0.0",
         "terser-webpack-plugin": "^2.1.0",
-        "vee-validate": "^3.0.6",
+        "vee-validate": "^3.0.7",
         "vue-loader": "^15.7.1",
         "vue-template-compiler": "^2.6.10",
         "vue-the-mask": "^0.11.1",
-        "webpack": "^4.39.3",
-        "webpack-bundle-tracker": "^0.4.2-beta",
+        "webpack": "^4.41.0",
+        "webpack-bundle-tracker": "^0.4.3",
         "webpack-cli": "^3.3.8",
-        "webpack-manifest-plugin": "^2.0.4"
+        "webpack-manifest-plugin": "^2.1.2"
     },
     "dependencies": {
         "vue": "^2.6.10"

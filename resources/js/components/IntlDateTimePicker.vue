@@ -12,81 +12,81 @@
 </template>
 
 <script>
-    import flatpickr                    from "flatpickr"
-    import DateTimeFormatConverter      from "../DateTimeFormatConverter"
-    import {momentjsLocaleMapping}      from "../InternationalMapper"
-    import {locale as locales}          from "../Locale"
-    import {mask}                       from "vue-the-mask"
-    import {extend, localize, validate} from "vee-validate"
-    import {Errors}                     from "laravel-nova"
+    import flatpickr                      from "flatpickr"
+    import { mask }                       from "vue-the-mask"
+    import { extend, localize, validate } from "vee-validate"
+    import { Errors }                     from "laravel-nova"
+    import DateTimeFormatConverter        from "../DateTimeFormatConverter"
+    import { momentjsLocaleMapping }      from "../InternationalMapper"
+    import locales                        from "../Locale"
 
     export default {
 
         directives: {
-            mask
+            mask,
         },
-        props:      {
-            field:              {
-                type:     Object,
+        props: {
+            field: {
+                type: Object,
                 required: true,
             },
-            value:              {
-                type:     String,
+            value: {
+                type: String,
                 required: false,
-                default:  ""
+                default: "",
             },
-            disabled:           {
-                type:    Boolean,
+            disabled: {
+                type: Boolean,
                 default: false,
             },
-            dateFormat:         {
-                type:    String,
-                default: ""
+            dateFormat: {
+                type: String,
+                default: "",
             },
-            timeFormat:         {
-                type:    String,
-                default: ""
+            timeFormat: {
+                type: String,
+                default: "",
             },
-            twelveHourTime:     {
-                type:    Boolean,
+            twelveHourTime: {
+                type: Boolean,
                 default: false,
             },
-            enableTime:         {
-                type:    Boolean,
+            enableTime: {
+                type: Boolean,
                 default: false,
             },
-            enableSeconds:      {
-                type:    Boolean,
+            enableSeconds: {
+                type: Boolean,
                 default: false,
             },
-            locale:             {
-                type:    String,
-                default: "en-gb"
+            locale: {
+                type: String,
+                default: "en-gb",
             },
             errorMessageLocale: {
-                type:    String,
-                default: "en"
+                type: String,
+                default: "en",
             },
-            placeholder:        {
-                type:    String,
-                default: ""
+            placeholder: {
+                type: String,
+                default: "",
             },
-            minDate:            {
-                type:    [Date, Object],
-                default: null
+            minDate: {
+                type: [Date, Object],
+                default: null,
             },
-            maxDate:            {
-                type:    [Date, Object],
-                default: null
-            }
+            maxDate: {
+                type: [Date, Object],
+                default: null,
+            },
         },
 
         data() {
             return {
-                refName:          "intlDatepickerInput",
-                flatpickr:        null,
-                validationError:  false,
-                validationErrors: new Errors()
+                refName: "intlDatepickerInput",
+                flatpickr: null,
+                validationError: false,
+                validationErrors: new Errors(),
             }
         },
 
@@ -98,15 +98,14 @@
             dateFormatString() {
                 if (this.dateFormat) {
                     return this.dateFormat
-                } else {
-                    try {
-                        return DateTimeFormatConverter.momentToFlatpickr(this.momentjsFormat)
-                    } catch (e) {
-                        console.warn(e)
-                    }
-
-                    return "d/m/Y H:i:S"
                 }
+                try {
+                    return DateTimeFormatConverter.momentToFlatpickr(this.momentjsFormat)
+                } catch (e) {
+                    console.warn(e)
+                }
+
+                return "d/m/Y H:i:S"
             },
 
             maskFormat() {
@@ -115,27 +114,27 @@
 
             dateValidationRule() {
                 return `date_format:${DateTimeFormatConverter.momentToDateFns(this.momentjsFormat)}`
-            }
+            },
         },
 
         mounted() {
             import(/* webpackChunkName: "date_format_rule" */ "../validation/rules/date_format")
-                .then(date_format => {
-                    extend("date_format", {...date_format})
+                .then((date_format) => {
+                    extend("date_format", { ...date_format })
 
                     this.loadLocale(this.errorMessageLocale)
                 })
 
-            let config = {
-                enableTime:    this.enableTime,
+            const config = {
+                enableTime: this.enableTime,
                 enableSeconds: this.enableSeconds,
-                onChange:      this.onChange,
+                onChange: this.onChange,
                 onValueUpdate: this.onChange,
-                onClose:       this.onChange,
-                dateFormat:    this.dateFormatString,
-                allowInput:    true,
-                time_24hr:     true,
-                locale:        locales.flatpickr[momentjsLocaleMapping[this.locale].translation]
+                onClose: this.onChange,
+                dateFormat: this.dateFormatString,
+                allowInput: true,
+                time_24hr: true,
+                locale: locales.flatpickr[momentjsLocaleMapping[this.locale].translation],
             }
 
             if (this.minDate) {
@@ -158,8 +157,8 @@
         methods: {
             onChange(selectedDates, dateStr) {
                 if (dateStr) {
-                    validate(dateStr, this.dateValidationRule, {name: this.field.name})
-                        .then(({valid, errors}) => {
+                    validate(dateStr, this.dateValidationRule, { name: this.field.name })
+                        .then(({ valid, errors }) => {
                             if (valid) {
                                 this.$set(this, "validationErrors", new Errors())
                                 this.$set(this, "validationError", false)
@@ -182,13 +181,13 @@
                  * Asynchronously load the locale file then localize the validator with it
                  */
                 import(/* webpackChunkName: "validation_locales/[request]" */ `vee-validate/dist/locale/${code}.json`)
-                    .then(locale => {
+                    .then((locale) => {
                         localize(code, locale)
                     })
                     .catch(() => {
                         console.warn(`The error messages do not support the '${code}' locale. Defaulting back to English. Please define another locale manually with errorMessageLocale().`)
                     })
-            }
+            },
         },
     }
 </script>

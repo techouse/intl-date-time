@@ -1,19 +1,19 @@
-import {parseDate as parse} from "../utils/date"
+import parse from "../utils/date"
 
-const validate = (value, {format}) => !!parse(value, format)
+const validate = (value, { format }) => !!parse(value, format)
 
 const params = [
     {
-        name: "format"
-    }
+        name: "format",
+    },
 ]
 
 export {
     validate,
-    params
+    params,
 }
 
 export default {
     validate,
-    params
+    params,
 }

@@ -12,29 +12,29 @@
 </template>
 
 <script>
-    import {locale as locales}  from "../../Locale"
-    import {InteractsWithDates} from "laravel-nova"
+    import { InteractsWithDates } from "laravel-nova"
+    import locales                from "../../Locale"
 
     export default {
         mixins: [InteractsWithDates],
 
         props: {
-            resource:     {
-                type:     Object,
-                required: true
+            resource: {
+                type: Object,
+                required: true,
             },
             resourceName: {
-                type:     String,
-                required: true
+                type: String,
+                required: true,
             },
-            resourceId:   {
-                type:     [Number, String],
-                required: true
+            resourceId: {
+                type: [Number, String],
+                required: true,
             },
-            field:        {
-                type:     Object,
-                required: true
-            }
+            field: {
+                type: Object,
+                required: true,
+            },
         },
 
         data() {

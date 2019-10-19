@@ -28,14 +28,14 @@
 </template>
 
 <script>
-    import IntlDateTimePicker                                               from "../IntlDateTimePicker"
-    import DateTimeFormatConverter                                          from "../../DateTimeFormatConverter"
-    import {locale as locales}                                              from "../../Locale"
-    import {Errors, FormField, HandlesValidationErrors, InteractsWithDates} from "laravel-nova"
+    import { Errors, FormField, HandlesValidationErrors, InteractsWithDates } from "laravel-nova"
+    import IntlDateTimePicker                                                 from "../IntlDateTimePicker"
+    import DateTimeFormatConverter                                            from "../../DateTimeFormatConverter"
+    import locales                                                            from "../../Locale"
 
     export default {
         components: {
-            IntlDateTimePicker
+            IntlDateTimePicker,
         },
 
         mixins: [HandlesValidationErrors,
@@ -45,9 +45,9 @@
         data() {
             return {
                 defaultMomentJSFormat: "YYYY-MM-DD HH:mm:ss",
-                localizedValue:        "",
-                validationError:       false,
-                validationErrors:      new Errors()
+                localizedValue: "",
+                validationError: false,
+                validationErrors: new Errors(),
             }
         },
 
@@ -114,7 +114,8 @@
                 if ("placeholder" in this.field) {
                     if (this.field.placeholder) {
                         return this.field.placeholder
-                    } else if (this.field.placeholder === false) {
+                    }
+                    if (this.field.placeholder === false) {
                         return ""
                     }
                 }
@@ -155,7 +156,7 @@
                         moment(this.value, this.defaultMomentJSFormat).tz(Nova.config.timezone)
                                                                       .clone()
                                                                       .tz(this.userTimezone)
-                                                                      .format(this.format)
+                                                                      .format(this.format),
                     )
                 }
             },
@@ -175,14 +176,14 @@
                                                       .clone()
                                                       .tz(Nova.config.timezone)
                                                       .format(this.defaultMomentJSFormat)
-                          : ""
+                          : "",
                 )
             },
 
-            handleError({errors}) {
+            handleError({ errors }) {
                 this.$set(this, "validationErrors", new Errors(errors))
                 this.$set(this, "validationError", true)
-            }
+            },
         },
     }
 </script>

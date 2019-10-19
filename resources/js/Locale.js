@@ -1,18 +1,20 @@
-import {flatpickrLocaleMapping, momentjsLocaleMapping} from "./InternationalMapper"
-import {locales}                                       from "moment/src/locale/extracted"
+import { locales }                                       from "moment/src/locale/extracted"
+import { flatpickrLocaleMapping, momentjsLocaleMapping } from "./InternationalMapper"
 
-let flatpickrLocales = {},
-    momentjsLocales  = {}
-
-for (const code in flatpickrLocaleMapping) {
-    flatpickrLocales[code] = require(`flatpickr/dist/l10n/${code}.js`)[flatpickrLocaleMapping[code].name]
+const locale = {
+    flatpickr: {},
+    momentjs: {},
 }
 
-for (const code in momentjsLocaleMapping) {
-    momentjsLocales[code] = locales[code]
+// eslint-disable-next-line no-restricted-syntax
+for (const code of Object.keys(flatpickrLocaleMapping)) {
+    // eslint-disable-next-line import/no-dynamic-require,global-require
+    locale.flatpickr[code] = require(`flatpickr/dist/l10n/${code}.js`)[flatpickrLocaleMapping[code].name]
 }
 
-export const locale = {
-    "flatpickr": flatpickrLocales,
-    "momentjs":  momentjsLocales
+// eslint-disable-next-line no-restricted-syntax
+for (const code of Object.keys(momentjsLocaleMapping)) {
+    locale.momentjs[code] = locales[code]
 }
+
+export default locale

@@ -1,7 +1,6 @@
-import {format as formatDate, isValid, parse} from "date-fns"
+import { format as formatDate, isValid, parse } from "date-fns"
 
-
-export function parseDate(date, format) {
+export default function parseDate(date, format) {
     if (typeof date !== "string") {
         return isValid(date) ? date : null
     }

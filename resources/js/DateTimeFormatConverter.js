@@ -23,7 +23,7 @@ const flatpickrFormatMapping = {
     i: "mm",
     S: "ss",
     s: "s",
-    K: "A"
+    K: "A",
 }
 
 /**
@@ -33,26 +33,26 @@ const flatpickrFormatMapping = {
  */
 const momentFormatMapping = {
     dddd: "l",
-    ddd:  "D",
-    DD:   "d",
-    Do:   "J",
-    D:    "j",
-    e:    "w",
+    ddd: "D",
+    DD: "d",
+    Do: "J",
+    D: "j",
+    e: "w",
     MMMM: "F",
-    MMM:  "M",
-    MM:   "m",
-    M:    "n",
-    X:    "U",
+    MMM: "M",
+    MM: "m",
+    M: "n",
+    X: "U",
     YYYY: "Y",
-    YY:   "y",
-    HH:   "H",
-    H:    "H",
-    h:    "h",
-    mm:   "i",
-    m:    "i",
-    ss:   "S",
-    s:    "s",
-    A:    "K"
+    YY: "y",
+    HH: "H",
+    H: "H",
+    h: "h",
+    mm: "i",
+    m: "i",
+    ss: "S",
+    s: "s",
+    A: "K",
 }
 
 /**
@@ -64,26 +64,26 @@ const momentFormatMapping = {
  */
 const dateFnsFormatMapping = {
     dddd: "EEEE",
-    ddd:  "E..EEE",
-    DD:   "dd",
-    Do:   "do",
-    D:    "d",
-    d:    "i",
+    ddd: "E..EEE",
+    DD: "dd",
+    Do: "do",
+    D: "d",
+    d: "i",
     MMMM: "MMMM",
-    MMM:  "MMM",
-    MM:   "MM",
-    M:    "M",
-    X:    "t",
+    MMM: "MMM",
+    MM: "MM",
+    M: "M",
+    X: "t",
     YYYY: "yyyy",
-    YY:   "yy",
-    HH:   "HH",
-    H:    "H",
-    h:    "h",
-    mm:   "mm",
-    m:    "m",
-    ss:   "ss",
-    s:    "s",
-    A:    "a..aaa"
+    YY: "yy",
+    HH: "HH",
+    H: "H",
+    h: "h",
+    mm: "mm",
+    m: "m",
+    ss: "ss",
+    s: "s",
+    A: "a..aaa",
 }
 
 /**
@@ -96,36 +96,36 @@ export default class DateTimeFormatConverter {
      * Convert format
      *
      * @param mapping
-     * @param string
+     * @param input
      * @returns {string}
      */
-    static convertFormat(mapping, string) {
-        string = string.replace(/[^ -~]+/g, "").replace(/\s+/g, " ").trim()
+    static convertFormat(mapping, input) {
+        let string = input.replace(/[^ -~]+/g, "").replace(/\s+/g, " ").trim()
 
+        const formats = Object.keys(mapping)
         let format = ""
 
         while (string.length > 0) {
             let advance = false
 
-            for (let f in mapping) {
-                if (Object.prototype.hasOwnProperty.call(mapping, f)) {
-                    if (delimiters.indexOf(string.slice(0, 1)) > -1) {
-                        // add the delimiter which is usually the next character
-                        format += string.slice(0, 1)
-                        // trim it away from the string
-                        string = string.slice(1)
+            // eslint-disable-next-line no-restricted-syntax
+            for (const fmt of formats) {
+                if (delimiters.indexOf(string.slice(0, 1)) > -1) {
+                    // add the delimiter which is usually the next character
+                    format += string.slice(0, 1)
+                    // trim it away from the string
+                    string = string.slice(1)
 
-                        advance = true
-                    }
+                    advance = true
+                }
 
-                    if (string.startsWith(f)) {
-                        // translate the format
-                        format += mapping[f]
-                        // remove the just parsed format
-                        string = string.slice(f.length)
+                if (string.startsWith(fmt)) {
+                    // translate the format
+                    format += mapping[fmt]
+                    // remove the just parsed format
+                    string = string.slice(fmt.length)
 
-                        advance = true
-                    }
+                    advance = true
                 }
             }
 
@@ -146,9 +146,8 @@ export default class DateTimeFormatConverter {
     static momentToFlatpickr(string) {
         if (string) {
             return this.convertFormat(momentFormatMapping, string)
-        } else {
-            throw "Empty input string provided!"
         }
+        throw new Error("Empty input string provided!")
     }
 
     /**
@@ -160,9 +159,8 @@ export default class DateTimeFormatConverter {
     static flatpickrToMoment(string) {
         if (string) {
             return this.convertFormat(flatpickrFormatMapping, string)
-        } else {
-            throw "Empty input string provided!"
         }
+        throw new Error("Empty input string provided!")
     }
 
     /**
@@ -174,8 +172,7 @@ export default class DateTimeFormatConverter {
     static momentToDateFns(string) {
         if (string) {
             return this.convertFormat(dateFnsFormatMapping, string)
-        } else {
-            throw "Empty input string provided!"
         }
+        throw new Error("Empty input string provided!")
     }
 }

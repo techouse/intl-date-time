@@ -18,7 +18,7 @@
                                        @change="handleChange"
                                        @error="handleError"
                 />
-                <span v-if="field.displayUserTimeZone" class="text-80 text-sm ml-2">({{ userTimezone }})</span>
+                <span v-if="field.displayUserTimeZone" class="text-80 text-sm ml-2">({{ __(userTimezone) }})</span>
             </div>
             <help-text v-if="firstError" class="error-text mt-2 text-danger">
                 {{ firstError }}

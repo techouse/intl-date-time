@@ -57,6 +57,6 @@
   "validation_locales/zh_TW-json.js": "/nova-vendor/intl-date-time/js/validation_locales/zh_TW-json.js",
   "vendors~date_format_rule.js": "/nova-vendor/intl-date-time/js/vendors~date_format_rule.js",
   "vendors~form-intl-date-time.js": "/nova-vendor/intl-date-time/js/vendors~form-intl-date-time.js",
-  "js/vendors~detail-intl-date-time~form-intl-date-time~index-intl-date-time.js.LICENSE": "/nova-vendor/intl-date-time/js/vendors~detail-intl-date-time~form-intl-date-time~index-intl-date-time.js.LICENSE",
-  "js/vendors~form-intl-date-time.js.LICENSE": "/nova-vendor/intl-date-time/js/vendors~form-intl-date-time.js.LICENSE"
+  "js/vendors~detail-intl-date-time~form-intl-date-time~index-intl-date-time.js.LICENSE.txt": "/nova-vendor/intl-date-time/js/vendors~detail-intl-date-time~form-intl-date-time~index-intl-date-time.js.LICENSE.txt",
+  "js/vendors~form-intl-date-time.js.LICENSE.txt": "/nova-vendor/intl-date-time/js/vendors~form-intl-date-time.js.LICENSE.txt"
 }

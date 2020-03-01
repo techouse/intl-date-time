@@ -1,2 +1,8 @@
 // Nova Tool CSS
 @import url("~flatpickr/dist/themes/airbnb.css");
+@import url("~shortcut-buttons-flatpickr/dist/themes/airbnb.css");
+
+.shortcut-buttons-flatpickr-buttons {
+  width: 100%;
+  justify-content: space-evenly;
+}

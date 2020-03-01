@@ -13,9 +13,11 @@
 
 <script>
     import flatpickr                      from "flatpickr"
+    import ShortcutButtonsPlugin          from "shortcut-buttons-flatpickr"
     import { mask }                       from "vue-the-mask"
     import { extend, localize, validate } from "vee-validate"
     import { Errors }                     from "laravel-nova"
+    import { addDays, subDays }           from "date-fns"
     import DateTimeFormatConverter        from "../DateTimeFormatConverter"
     import { momentjsLocaleMapping }      from "../InternationalMapper"
     import locales                        from "../Locale"
@@ -87,6 +89,7 @@
                 flatpickr: null,
                 validationError: false,
                 validationErrors: new Errors(),
+                now: new Date()
             }
         },
 
@@ -135,6 +138,36 @@
                 allowInput: true,
                 time_24hr: true,
                 locale: locales.flatpickr[momentjsLocaleMapping[this.locale].translation],
+                plugins: [
+                    ShortcutButtonsPlugin({
+                        button: [
+                            {
+                                label: this.__("Yesterday")
+                            },
+                            {
+                                label: this.__("Today")
+                            },
+                            {
+                                label: this.__("Tomorrow")
+                            }
+                        ],
+                        onClick: (index, fp) => {
+                            let date
+                            switch (index) {
+                                case 0:
+                                    date = subDays(this.now, 1)
+                                    break
+                                case 1:
+                                    date = this.now
+                                    break
+                                case 2:
+                                    date = addDays(this.now, 1)
+                                    break
+                            }
+                            fp.setDate(date)
+                        }
+                    })
+                ],
             }
 
             if (this.minDate) {

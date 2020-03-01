@@ -34,6 +34,12 @@ See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
 ***************************************************************************** */
 
+/*! no static exports found */
+
+/*!**********************!*\
+        !*** ./src/index.ts ***!
+        \**********************/
+
 /**
   * vee-validate v3.2.5
   * (c) 2020 Abdelrahman Awad

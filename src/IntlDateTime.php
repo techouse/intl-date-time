@@ -26,9 +26,14 @@ class IntlDateTime extends DateTime
     protected $errorLocale = 'en';
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $displayUserTimeZone = true;
+
+    /**
+     * @var bool
+     */
+    protected $displayShortcutButtons = false;
 
     /**
      * @var array
@@ -255,9 +260,10 @@ class IntlDateTime extends DateTime
             }
         }
 
-        $this->withMeta(['locale'              => $this->locale,
-                         'errorMessageLocale'  => $this->errorLocale,
-                         'displayUserTimeZone' => $this->displayUserTimeZone]);
+        $this->withMeta(['locale'                 => $this->locale,
+                         'errorMessageLocale'     => $this->errorLocale,
+                         'displayUserTimeZone'    => $this->displayUserTimeZone,
+                         'displayShortcutButtons' => $this->displayShortcutButtons]);
     }
 
     /**
@@ -399,5 +405,15 @@ class IntlDateTime extends DateTime
         $this->displayUserTimeZone = false;
 
         return $this->withMeta(['displayUserTimeZone' => $this->displayUserTimeZone]);
+    }
+
+    /**
+     * Display shortcut buttons for "yesterday", "today" and "tomorrow"
+     */
+    public function withShortcutButtons()
+    {
+        $this->displayShortcutButtons = true;
+
+        return $this->withMeta(['displayShortcutButtons' => $this->displayShortcutButtons]);
     }
 }

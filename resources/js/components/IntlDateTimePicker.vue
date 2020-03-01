@@ -118,6 +118,10 @@
             dateValidationRule() {
                 return `date_format:${DateTimeFormatConverter.momentToDateFns(this.momentjsFormat)}`
             },
+
+            displayShortcutButtons() {
+                return this.field.displayShortcutButtons || false
+            }
         },
 
         mounted() {
@@ -138,7 +142,7 @@
                 allowInput: true,
                 time_24hr: true,
                 locale: locales.flatpickr[momentjsLocaleMapping[this.locale].translation],
-                plugins: [
+                plugins: this.displayShortcutButtons ? [
                     ShortcutButtonsPlugin({
                         button: [
                             {
@@ -168,7 +172,7 @@
                             fp.setDate(date)
                         },
                     })
-                ],
+                ] : [],
             }
 
             if (this.minDate) {

@@ -89,7 +89,7 @@
                 flatpickr: null,
                 validationError: false,
                 validationErrors: new Errors(),
-                now: new Date()
+                now: new Date(),
             }
         },
 
@@ -142,13 +142,13 @@
                     ShortcutButtonsPlugin({
                         button: [
                             {
-                                label: this.__("Yesterday")
+                                label: this.__("Yesterday"),
                             },
                             {
-                                label: this.__("Today")
+                                label: this.__("Today"),
                             },
                             {
-                                label: this.__("Tomorrow")
+                                label: this.__("Tomorrow"),
                             }
                         ],
                         onClick: (index, fp) => {
@@ -158,6 +158,7 @@
                                     date = subDays(this.now, 1)
                                     break
                                 case 1:
+                                default:
                                     date = this.now
                                     break
                                 case 2:
@@ -165,7 +166,7 @@
                                     break
                             }
                             fp.setDate(date)
-                        }
+                        },
                     })
                 ],
             }

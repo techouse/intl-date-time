@@ -71,6 +71,13 @@
                     if (this.field.timeFormat.match(/^[Hh]{1,2}:[m]{1,2}(:[s]{1,2})?$/)) {
                         return this.field.timeFormat
                     }
+                } else {
+                    if (this.field.displayLocaleTime) {
+                        return locales.momentjs[this.locale].LTS
+                    }
+                    if (this.field.displayLocaleTimeShort) {
+                        return locales.momentjs[this.locale].LT
+                    }
                 }
 
                 return ""

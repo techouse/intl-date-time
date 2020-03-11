@@ -135,7 +135,23 @@ class User extends Resource
                      * Display shortcut buttons for "yesterday", "today" and "tomorrow".
                      * Translate them in your language's JSON file located in resources/lang/vendor/nova.
                      */
-                    ->withShortcutButtons()
+                    ->withShortcutButtons(),
+
+            DateTime::make(__('Time of arrival'), 'time_of_arrival')
+                    /**
+                     * Shortcut for displaying the full locale time, e.g. HH:mm:ss.
+                     * 
+                     * NOTE: The timeFormat option has precedence over withTime.
+                     */
+                    ->withTime(),
+
+            DateTime::make(__('Time of reservation'), 'time_of_reservation')
+                    /**
+                     * Shortcut for displaying the short locale time, e.g. HH:mm.
+                     * 
+                     * NOTE: The timeFormat option has precedence over withTimeShort.
+                     */
+                    ->withTimeShort(),
         ];
     }
 

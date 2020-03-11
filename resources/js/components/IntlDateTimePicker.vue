@@ -95,6 +95,15 @@
 
         computed: {
             momentjsFormat() {
+                if (!this.timeFormat) {
+                    if (this.field.displayLocaleTime) {
+                        this.$set(this, "timeFormat", locales.momentjs[this.locale].LTS)
+                    }
+                    else if (this.field.displayLocaleTimeShort) {
+                        this.$set(this, "timeFormat", locales.momentjs[this.locale].LT)
+                    }
+                }
+
                 return `${locales.momentjs[this.locale].L} ${this.timeFormat}`.replace(/[^ -~]+/g, "").trim()
             },
 
@@ -121,7 +130,7 @@
 
             displayShortcutButtons() {
                 return this.field.displayShortcutButtons || false
-            }
+            },
         },
 
         mounted() {

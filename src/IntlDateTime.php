@@ -36,6 +36,16 @@ class IntlDateTime extends DateTime
     protected $displayShortcutButtons = false;
 
     /**
+     * @var bool
+     */
+    protected $displayLocaleTime = false;
+
+    /**
+     * @var bool
+     */
+    protected $displayLocaleTimeShort = false;
+
+    /**
      * @var array
      */
     private static $momentjsSupportedLocales = [
@@ -263,7 +273,9 @@ class IntlDateTime extends DateTime
         $this->withMeta(['locale'                 => $this->locale,
                          'errorMessageLocale'     => $this->errorLocale,
                          'displayUserTimeZone'    => $this->displayUserTimeZone,
-                         'displayShortcutButtons' => $this->displayShortcutButtons]);
+                         'displayShortcutButtons' => $this->displayShortcutButtons,
+                         'displayLocaleTime'      => $this->displayLocaleTime,
+                         'displayLocaleTimeShort' => $this->displayLocaleTime]);
     }
 
     /**
@@ -308,6 +320,24 @@ class IntlDateTime extends DateTime
 
             throw new TimeFormatNotSupportedException("Time format {$value} is not supported by MomentJS! Please refer to the module documentation.");
         }
+    }
+
+    public function withTime()
+    {
+        $this->displayLocaleTime = true;
+        $this->displayLocaleTimeShort = false;
+
+        return $this->withMeta(['displayLocaleTime'      => $this->displayLocaleTime,
+                                'displayLocaleTimeShort' => $this->displayLocaleTimeShort]);
+    }
+
+    public function withTimeShort()
+    {
+        $this->displayLocaleTimeShort = true;
+        $this->displayLocaleTime = false;
+
+        return $this->withMeta(['displayLocaleTime'      => $this->displayLocaleTime,
+                                'displayLocaleTimeShort' => $this->displayLocaleTimeShort]);
     }
 
     /**

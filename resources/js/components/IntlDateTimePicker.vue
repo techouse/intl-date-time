@@ -98,8 +98,7 @@
                 if (!this.timeFormat) {
                     if (this.field.displayLocaleTime) {
                         this.$set(this, "timeFormat", locales.momentjs[this.locale].LTS)
-                    }
-                    else if (this.field.displayLocaleTimeShort) {
+                    } else if (this.field.displayLocaleTimeShort) {
                         this.$set(this, "timeFormat", locales.momentjs[this.locale].LT)
                     }
                 }
@@ -162,7 +161,7 @@
                             },
                             {
                                 label: this.__("Tomorrow"),
-                            }
+                            },
                         ],
                         onClick: (index, fp) => {
                             let date
@@ -180,7 +179,7 @@
                             }
                             fp.setDate(date)
                         },
-                    })
+                    }),
                 ] : [],
             }
 

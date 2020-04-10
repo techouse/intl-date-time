@@ -1,5 +1,8 @@
 <template>
-    <span v-if="field.value" class="whitespace-no-wrap">{{ localizedDateTime }}</span>
+    <span v-if="field.value" class="whitespace-no-wrap">
+        {{ localizedDateTime }}
+        <span v-if="field.displayUserTimeZone" class="text-80 text-sm ml-2">({{ __(userTimezone) }})</span>
+    </span>
     <span v-else>&mdash;</span>
 </template>
 

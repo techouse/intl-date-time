@@ -3,6 +3,7 @@
         <template slot="value">
             <p v-if="field.value" class="text-90">
                 {{ localizedDateTime }}
+                <span v-if="field.displayUserTimeZone" class="text-80 text-sm ml-2">({{ __(userTimezone) }})</span>
             </p>
             <p v-else>
                 &mdash;

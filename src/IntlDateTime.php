@@ -271,6 +271,7 @@ class IntlDateTime extends DateTime
         }
 
         $this->withMeta(['locale'                 => $this->locale,
+                         'timeZone'               => config('app.timezone', 'UTC'),
                          'errorMessageLocale'     => $this->errorLocale,
                          'displayUserTimeZone'    => $this->displayUserTimeZone,
                          'displayShortcutButtons' => $this->displayShortcutButtons,

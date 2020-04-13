@@ -45,6 +45,13 @@
         },
 
         computed: {
+            systemTimeZone() {
+                if (this.field.timeZone) {
+                    return this.field.timeZone
+                }
+                return "UTC"
+            },
+
             userTimezone: () => Nova.config.userTimezone || moment.tz.guess(),
 
             dateFormat() {
@@ -73,7 +80,8 @@
             },
 
             momentjsFormat() {
-                return `${this.dateFormat} ${this.timeFormat}`.replace(/[^ -~]+/g, "").trim()
+                return `${this.dateFormat} ${this.timeFormat}`.replace(/[^ -~]+/g, "")
+                                                              .trim()
             },
 
             /**
@@ -81,10 +89,10 @@
              */
             localizedDateTime() {
                 // fromAppTimezone
-                return moment(this.field.value, this.defaultMomentJSFormat).tz(Nova.config.timezone)
-                                                                           .clone()
-                                                                           .tz(this.userTimezone)
-                                                                           .format(this.momentjsFormat)
+                return moment.tz(this.field.value, this.defaultMomentJSFormat, this.systemTimeZone)
+                             .clone()
+                             .tz(this.userTimezone)
+                             .format(this.momentjsFormat)
             },
         },
     }

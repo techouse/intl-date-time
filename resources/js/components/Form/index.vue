@@ -52,6 +52,13 @@
         },
 
         computed: {
+            systemTimeZone() {
+                if (this.field.timeZone) {
+                    return this.field.timeZone
+                }
+                return "UTC"
+            },
+
             userTimezone: () => Nova.config.userTimezone || moment.tz.guess(),
 
             dateFormat() {
@@ -100,7 +107,8 @@
             },
 
             momentjsFormat() {
-                return `${locales.momentjs[this.locale].L} ${this.timeFormat}`.replace(/[^ -~]+/g, "").trim()
+                return `${locales.momentjs[this.locale].L} ${this.timeFormat}`.replace(/[^ -~]+/g, "")
+                                                                              .trim()
             },
 
             defaultFlatpickrFormat() {
@@ -160,10 +168,10 @@
                         this,
                         "localizedValue",
                         // fromAppTimezone
-                        moment(this.value, this.defaultMomentJSFormat).tz(Nova.config.timezone)
-                                                                      .clone()
-                                                                      .tz(this.userTimezone)
-                                                                      .format(this.format),
+                        moment.tz(this.value, this.defaultMomentJSFormat, this.systemTimeZone)
+                              .clone()
+                              .tz(this.userTimezone)
+                              .format(this.format),
                     )
                 }
             },
@@ -179,10 +187,10 @@
                     this,
                     "value",
                     // toAppTimezone
-                    value ? moment(value, this.format).tz(this.userTimezone)
-                                                      .clone()
-                                                      .tz(Nova.config.timezone)
-                                                      .toISOString()
+                    value ? moment.tz(value, this.format, this.userTimezone)
+                                  .clone()
+                                  .tz(this.systemTimeZone)
+                                  .toISOString()
                           : "",
                 )
             },

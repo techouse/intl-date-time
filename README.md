@@ -38,6 +38,8 @@ The module itself offers a few optional configurations:
 * __errorMessageLocale__ - _OPTIONAL_ - Set a custom error message locale. If not set it equals the set `locale` or your app's `config('app.locale')`. If you manually define an unsupported locale it will throw an Exception! [Here is the list of all supported locales](https://github.com/baianat/vee-validate/tree/master/locale).
 * __hideUserTimeZone__ - _OPTIONAL_ - When applied hides the user time zone next to the form field. Default is `false`.
 * __withShortcutButtons__ - _OPTIONAL_ - When applied shows the user 3 shortcut buttons for 'yesterday, 'today' and 'tomorrow' below the calendar. The buttons are all in English and in order to translate them please edit your language JSON file in the directory `resources/lang/vendor/nova`.
+* __withTime__ - _OPTIONAL_ - Shortcut for displaying the full locale time, e.g. HH:mm:ss. NOTE: The timeFormat option has precedence over withTime.
+* __withTimeShort__ - _OPTIONAL_ - Shortcut for displaying the short locale time, e.g. HH:mm. NOTE: The timeFormat option has precedence over withTimeShort.
 
 Simply use `IntlDateTime` class instead of `DateTime` directly or alias it like the example below so you won't have to refactor too much existing code.
 

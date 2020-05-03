@@ -190,7 +190,7 @@
                     value ? moment.tz(value, this.format, this.userTimezone)
                                   .clone()
                                   .tz(this.systemTimeZone)
-                                  .toISOString()
+                                  .format(`${this.defaultMomentJSFormat} ZZ`)
                           : "",
                 )
             },

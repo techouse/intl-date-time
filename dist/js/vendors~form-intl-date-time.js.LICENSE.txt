@@ -41,7 +41,7 @@ and limitations under the License.
         \**********************/
 
 /**
-  * vee-validate v3.2.5
+  * vee-validate v3.3.0
   * (c) 2020 Abdelrahman Awad
   * @license MIT
   */

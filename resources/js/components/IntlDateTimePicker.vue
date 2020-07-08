@@ -190,7 +190,7 @@
 
                 ...(this.required ? [] : [
                     (index, fp) => {
-                        if (index == 3 || !this.shortcutButtons) {
+                        if (index == 3 || !this.displayShortcutButtons) {
                             fp.clear()
                             fp.close()
                         }

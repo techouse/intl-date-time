@@ -130,6 +130,10 @@
             displayShortcutButtons() {
                 return this.field.displayShortcutButtons || false
             },
+
+            required() {
+                return this.field.required || false
+            },
         },
 
         mounted() {
@@ -139,6 +143,60 @@
 
                     this.loadLocale(this.errorMessageLocale)
                 })
+
+            const shortcutButtons = [
+                ...(this.displayShortcutButtons ? [
+                    {
+                        label: this.__("Yesterday"),
+                    },
+                    {
+                        label: this.__("Today"),
+                    },
+                    {
+                        label: this.__("Tomorrow"),
+                    },
+                ] : []),
+
+                ...(this.required ? [] : [
+                    {
+                        label: this.__("Clear"),
+                    }
+                ]),
+            ]
+
+            const shortcutButtonFunctions = [
+                ...(this.displayShortcutButtons ? [
+                    (index, fp) => {
+                        if (index > 2) {
+                            return
+                        }
+
+                        let date
+                        switch (index) {
+                            case 0:
+                                date = subDays(this.now, 1)
+                                break
+                            case 1:
+                            default:
+                                date = this.now
+                                break
+                            case 2:
+                                date = addDays(this.now, 1)
+                                break
+                        }
+                        fp.setDate(date)
+                    }
+                ] : []),
+
+                ...(this.required ? [] : [
+                    (index, fp) => {
+                        if (index == 3 || !this.displayShortcutButtons) {
+                            fp.clear()
+                            fp.close()
+                        }
+                    },
+                ]),
+            ]
 
             const config = {
                 enableTime: this.enableTime,
@@ -150,35 +208,10 @@
                 allowInput: true,
                 time_24hr: true,
                 locale: locales.flatpickr[momentjsLocaleMapping[this.locale].translation],
-                plugins: this.displayShortcutButtons ? [
+                plugins: shortcutButtons.length > 0 ? [
                     ShortcutButtonsPlugin({
-                        button: [
-                            {
-                                label: this.__("Yesterday"),
-                            },
-                            {
-                                label: this.__("Today"),
-                            },
-                            {
-                                label: this.__("Tomorrow"),
-                            },
-                        ],
-                        onClick: (index, fp) => {
-                            let date
-                            switch (index) {
-                                case 0:
-                                    date = subDays(this.now, 1)
-                                    break
-                                case 1:
-                                default:
-                                    date = this.now
-                                    break
-                                case 2:
-                                    date = addDays(this.now, 1)
-                                    break
-                            }
-                            fp.setDate(date)
-                        },
+                        button: shortcutButtons,
+                        onClick: shortcutButtonFunctions,
                     }),
                 ] : [],
             }

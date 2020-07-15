@@ -9,6 +9,7 @@
   "index-intl-date-time.js": "/nova-vendor/intl-date-time/js/index-intl-date-time.js",
   "validation_locales/ar-json.js": "/nova-vendor/intl-date-time/js/validation_locales/ar-json.js",
   "validation_locales/az-json.js": "/nova-vendor/intl-date-time/js/validation_locales/az-json.js",
+  "validation_locales/bd-json.js": "/nova-vendor/intl-date-time/js/validation_locales/bd-json.js",
   "validation_locales/bg-json.js": "/nova-vendor/intl-date-time/js/validation_locales/bg-json.js",
   "validation_locales/ca-json.js": "/nova-vendor/intl-date-time/js/validation_locales/ca-json.js",
   "validation_locales/cs-json.js": "/nova-vendor/intl-date-time/js/validation_locales/cs-json.js",

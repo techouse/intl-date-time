@@ -8,6 +8,7 @@
            :name="field.name"
            :placeholder="placeholder"
            type="text"
+           :required="field.required || false"
     >
 </template>
 

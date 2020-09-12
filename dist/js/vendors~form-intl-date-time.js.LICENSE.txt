@@ -1,8 +1,8 @@
 /* flatpickr v4.6.6, @license MIT */
 
 /*!
- * Vue.js v2.6.11
- * (c) 2014-2019 Evan You
+ * Vue.js v2.6.12
+ * (c) 2014-2020 Evan You
  * Released under the MIT License.
  */
 
@@ -41,7 +41,7 @@ PERFORMANCE OF THIS SOFTWARE.
         \**********************/
 
 /**
-  * vee-validate v3.3.9
+  * vee-validate v3.3.11
   * (c) 2020 Abdelrahman Awad
   * @license MIT
   */

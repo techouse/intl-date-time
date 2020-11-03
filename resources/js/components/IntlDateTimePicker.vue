@@ -1,9 +1,9 @@
 <template>
     <input :ref="refName"
            v-mask="maskFormat"
-           :disabled="disabled"
+           :disabled="field.readonly"
            :dusk="field.attribute"
-           :class="{'!cursor-not-allowed': disabled}"
+           :class="{'!cursor-not-allowed': field.readonly}"
            :value="value"
            :name="field.name"
            :placeholder="placeholder"
@@ -38,7 +38,7 @@
                 required: false,
                 default: "",
             },
-            disabled: {
+            readonly: {
                 type: Boolean,
                 default: false,
             },

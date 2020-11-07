@@ -41,7 +41,7 @@ PERFORMANCE OF THIS SOFTWARE.
         \**********************/
 
 /**
-  * vee-validate v3.3.11
+  * vee-validate v3.4.3
   * (c) 2020 Abdelrahman Awad
   * @license MIT
   */

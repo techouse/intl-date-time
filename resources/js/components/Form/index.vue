@@ -23,10 +23,7 @@
             <help-text v-if="firstError" class="error-text mt-2 text-danger">
                 {{ firstError }}
             </help-text>
-            
-            <help-text class="help-text mt-2" v-if="showHelpText">
-                {{ field.helpText }}
-            </help-text>
+
         </template>
     </default-field>
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <default-field :field="field" :errors.sync="errors">
+    <default-field :field="field" :errors.sync="errors" :show-help-text="showHelpText">
         <template slot="field">
             <div class="flex items-center">
                 <intl-date-time-picker :field="field"
@@ -22,6 +22,10 @@
             </div>
             <help-text v-if="firstError" class="error-text mt-2 text-danger">
                 {{ firstError }}
+            </help-text>
+            
+            <help-text class="help-text mt-2" v-if="showHelpText">
+                {{ field.helpText }}
             </help-text>
         </template>
     </default-field>

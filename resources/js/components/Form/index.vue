@@ -1,5 +1,5 @@
 <template>
-    <default-field :field="field" :errors.sync="errors">
+    <default-field :field="field" :errors.sync="errors" :show-help-text="showHelpText">
         <template slot="field">
             <div class="flex items-center">
                 <intl-date-time-picker :field="field"

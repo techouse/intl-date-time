@@ -30,6 +30,11 @@ class IntlDateTime extends DateTime
      */
     protected $displayUserTimeZone = true;
 
+     /**
+     * @var bool
+     */
+    protected $userTimeZone = null;
+
     /**
      * @var bool
      */
@@ -274,6 +279,7 @@ class IntlDateTime extends DateTime
                          'timeZone'               => config('app.timezone', 'UTC'),
                          'errorMessageLocale'     => $this->errorLocale,
                          'displayUserTimeZone'    => $this->displayUserTimeZone,
+                         'userTimeZone'           => $this->userTimeZone,
                          'displayShortcutButtons' => $this->displayShortcutButtons,
                          'displayLocaleTime'      => $this->displayLocaleTime,
                          'displayLocaleTimeShort' => $this->displayLocaleTime]);
@@ -368,6 +374,7 @@ class IntlDateTime extends DateTime
         return $this->withMeta([__FUNCTION__ => $value]);
     }
 
+
     /**
      * @param $value
      * @return mixed
@@ -436,6 +443,17 @@ class IntlDateTime extends DateTime
         $this->displayUserTimeZone = false;
 
         return $this->withMeta(['displayUserTimeZone' => $this->displayUserTimeZone]);
+    }
+
+    /**
+     * Define custom userTimeZone (if not defined it is read from Nova.config.userTimezone)
+     *
+     * @param $placeholder
+     * @return mixed
+     */
+    public function userTimeZone($value = null)
+    {
+        return $this->withMeta([__FUNCTION__ => $value]);
     }
 
     /**

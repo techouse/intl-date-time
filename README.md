@@ -40,6 +40,7 @@ The module itself offers a few optional configurations:
 * __withShortcutButtons__ - _OPTIONAL_ - When applied shows the user 3 shortcut buttons for 'yesterday, 'today' and 'tomorrow' below the calendar. The buttons are all in English and in order to translate them please edit your language JSON file in the directory `resources/lang/vendor/nova`.
 * __withTime__ - _OPTIONAL_ - Shortcut for displaying the full locale time, e.g. HH:mm:ss. NOTE: The timeFormat option has precedence over withTime.
 * __withTimeShort__ - _OPTIONAL_ - Shortcut for displaying the short locale time, e.g. HH:mm. NOTE: The timeFormat option has precedence over withTimeShort.
+* __userTimeZone__ - _OPTIONAL_ - Define custom Timezone for specific field - by default Nova.config.userTimezone is used.
 
 Simply use `IntlDateTime` class instead of `DateTime` directly or alias it like the example below so you won't have to refactor too much existing code.
 

@@ -52,7 +52,15 @@
                 return "UTC"
             },
 
-            userTimezone: () => Nova.config.userTimezone || moment.tz.guess(),
+            userTimezone()
+            {
+                if (this.field.userTimeZone) {
+                    return this.field.userTimeZone
+                }
+
+                return Nova.config.userTimezone || moment.tz.guess()
+            },
+
 
             dateFormat() {
                 return this.field.dateFormat || locales.momentjs[this.locale].L

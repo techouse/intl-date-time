@@ -207,5 +207,11 @@
                 this.$set(this, "validationError", true)
             },
         },
+
+        mounted() {
+          Nova.$on(this.field.attribute + '-value', value => {
+            this.localizedValue = value
+          })
+        },
     }
 </script>

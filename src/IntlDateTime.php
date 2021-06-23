@@ -303,32 +303,31 @@ class IntlDateTime extends DateTime
     }
 
     /**
-     * @param $value
-     * @return mixed
+     * @param string $value
+     * @return $this
      */
     public function dateFormat($value)
     {
-        if ($value) {
-            return $this->withMeta([__FUNCTION__ => $value]);
-        }
+        return $this->withMeta([__FUNCTION__ => $value]);
     }
 
     /**
-     * @param $value
-     * @return mixed
+     * @param string $value
+     * @return $this
      * @throws \Techouse\IntlDateTime\TimeFormatNotSupportedException
      */
     public function timeFormat($value)
     {
-        if ($value) {
-            if (preg_match('/^[Hh]{1,2}:[m]{1,2}(:[s]{1,2})?$/', $value)) {
-                return $this->withMeta([__FUNCTION__ => $value]);
-            }
-
-            throw new TimeFormatNotSupportedException("Time format {$value} is not supported by MomentJS! Please refer to the module documentation.");
+        if (preg_match('/^[Hh]{1,2}:[m]{1,2}(:[s]{1,2})?$/', $value)) {
+            return $this->withMeta([__FUNCTION__ => $value]);
         }
+
+        throw new TimeFormatNotSupportedException("Time format {$value} is not supported by MomentJS! Please refer to the module documentation.");
     }
 
+    /**
+     * @return $this
+     */
     public function withTime()
     {
         $this->displayLocaleTime = true;
@@ -338,6 +337,9 @@ class IntlDateTime extends DateTime
                                 'displayLocaleTimeShort' => $this->displayLocaleTimeShort]);
     }
 
+    /**
+     * @return $this
+     */
     public function withTimeShort()
     {
         $this->displayLocaleTimeShort = true;
@@ -349,7 +351,7 @@ class IntlDateTime extends DateTime
 
     /**
      * @param \DateTime|null $value
-     * @return mixed
+     * @return $this
      */
     public function minDate(?\DateTime $value = null)
     {
@@ -358,7 +360,7 @@ class IntlDateTime extends DateTime
 
     /**
      * @param \DateTime|null $value
-     * @return mixed
+     * @return $this
      */
     public function maxDate(?\DateTime $value = null)
     {
@@ -366,8 +368,8 @@ class IntlDateTime extends DateTime
     }
 
     /**
-     * @param $placeholder
-     * @return mixed
+     * @param string|bool $placeholder
+     * @return $this
      */
     public function placeholder($value = null)
     {
@@ -376,67 +378,63 @@ class IntlDateTime extends DateTime
 
 
     /**
-     * @param $value
-     * @return mixed
+     * @param string $value
+     * @return $this
      * @throws \Techouse\IntlDateTime\LocaleNotSupportedException
      */
     public function locale($value)
     {
-        if ($value) {
-            $value = strtolower(trim($value));
+        $value = strtolower(trim($value));
 
-            if (!in_array($value, self::$momentjsSupportedLocales, true)) {
-                throw new LocaleNotSupportedException("Locale {$value} is not supported by MomentJS. Please consult the module documentation.");
-            }
-
-            $this->locale = $value;
-
-            if (array_key_exists($value, self::$translatedMomentJSLocalesToErrorLocales) && self::$translatedMomentJSLocalesToErrorLocales[$value]) {
-                $this->errorLocale = self::$translatedMomentJSLocalesToErrorLocales[$value];
-            }
-
-            if ($this->locale === 'en') {
-                $this->locale = 'en-gb';
-            }
-
-            return $this->withMeta([__FUNCTION__         => $this->locale,
-                                    'errorMessageLocale' => $this->errorLocale]);
+        if (!in_array($value, self::$momentjsSupportedLocales, true)) {
+            throw new LocaleNotSupportedException("Locale {$value} is not supported by MomentJS. Please consult the module documentation.");
         }
+
+        $this->locale = $value;
+
+        if (array_key_exists($value, self::$translatedMomentJSLocalesToErrorLocales) && self::$translatedMomentJSLocalesToErrorLocales[$value]) {
+            $this->errorLocale = self::$translatedMomentJSLocalesToErrorLocales[$value];
+        }
+
+        if ($this->locale === 'en') {
+            $this->locale = 'en-gb';
+        }
+
+        return $this->withMeta([__FUNCTION__         => $this->locale,
+            'errorMessageLocale' => $this->errorLocale]);
     }
 
     /**
-     * @param $value
-     * @return mixed
+     * @param string $value
+     * @return $this
      */
     public function errorMessage($value)
     {
-        if ($value) {
-            return $this->withMeta([__FUNCTION__ => $value]);
-        }
+        return $this->withMeta([__FUNCTION__ => $value]);
     }
 
     /**
      * Has to be one of these https://github.com/baianat/vee-validate/tree/master/locale
      *
-     * @param $value
-     * @return mixed
+     * @param string $value
+     * @return $this
      * @throws \Techouse\IntlDateTime\LocaleNotSupportedException
      */
     public function errorMessageLocale($value)
     {
-        if ($value) {
-            if (!in_array($value, self::$errorSupportedLocales, true)) {
-                throw new LocaleNotSupportedException("Locale {$value} is not supported by VeeValidate. Please consult the module documentation.");
-            }
-
-            $this->errorLocale = $value;
-
-            return $this->withMeta([__FUNCTION__ => $this->errorLocale]);
+        if (!in_array($value, self::$errorSupportedLocales, true)) {
+            throw new LocaleNotSupportedException("Locale {$value} is not supported by VeeValidate. Please consult the module documentation.");
         }
+
+        $this->errorLocale = $value;
+
+        return $this->withMeta([__FUNCTION__ => $this->errorLocale]);
     }
 
     /**
      * Hides the user time zone
+     *
+     * @return $this
      */
     public function hideUserTimeZone()
     {
@@ -449,7 +447,7 @@ class IntlDateTime extends DateTime
      * Define custom userTimeZone (if not defined it is read from Nova.config.userTimezone)
      *
      * @param $placeholder
-     * @return mixed
+     * @return $this
      */
     public function userTimeZone($value = null)
     {
@@ -458,6 +456,8 @@ class IntlDateTime extends DateTime
 
     /**
      * Display shortcut buttons for "yesterday", "today" and "tomorrow"
+     *
+     * @return $this
      */
     public function withShortcutButtons()
     {

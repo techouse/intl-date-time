@@ -165,6 +165,16 @@ class User extends Resource
 
 ```
 
+## Programmed filling
+
+Like many Laravel Nova Fields, this field implement the programmed filling. You can emit a Laravel Nova javascript event in order to fill the field in the update form.
+
+```js
+Nova.$emit('my-field-name-value', '29/06/1998')
+```
+
+Please make sure that the value emitted correspond to your local date.
+
 ## List of supported locales
 
 This module supports only locales that are __SUPPORTED BY BOTH__ [MomentJS](https://github.com/moment/moment/tree/2.24.0/src/locale) __AND__ [Flatpickr](https://github.com/flatpickr/flatpickr/tree/v4.6.1/src/l10n)!

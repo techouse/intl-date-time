@@ -233,7 +233,7 @@
                 this.flatpickr = flatpickr(this.$refs[this.refName], config)
             })
 			
-			Nova.$on(this.field.attribute + '-value', value => {
+            Nova.$on(this.field.attribute + '-value', value => {
               this.flatpickr.setDate(value)
               this.onChange([], value)
             })

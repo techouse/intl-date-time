@@ -51,6 +51,16 @@ class IntlDateTime extends DateTime
     protected $displayLocaleTimeShort = false;
 
     /**
+     * @var int
+     */
+    protected $defaultHour = 12;
+
+    /**
+     * @var int
+     */
+    protected $defaultMinute = 0;
+
+    /**
      * @var array
      */
     private static $momentjsSupportedLocales = [
@@ -281,6 +291,8 @@ class IntlDateTime extends DateTime
                          'displayUserTimeZone'    => $this->displayUserTimeZone,
                          'userTimeZone'           => $this->userTimeZone,
                          'displayShortcutButtons' => $this->displayShortcutButtons,
+                         'defaultHour'            => $this->defaultHour,
+                         'defaultMinute'          => $this->defaultMinute,
                          'displayLocaleTime'      => $this->displayLocaleTime,
                          'displayLocaleTimeShort' => $this->displayLocaleTime]);
     }
@@ -464,5 +476,31 @@ class IntlDateTime extends DateTime
         $this->displayShortcutButtons = true;
 
         return $this->withMeta(['displayShortcutButtons' => $this->displayShortcutButtons]);
+    }
+
+    /**
+     * Define initial value of the hour element.
+     *
+     * @param int $value
+     * @return $this
+     */
+    public function defaultHour(int $value)
+    {
+        $this->defaultHour = $value;
+
+        return $this->withMeta([__FUNCTION__ => $value]);
+    }
+
+    /**
+     * Define initial value of the minute element.
+     *
+     * @param int $value
+     * @return $this
+     */
+    public function defaultMinute(int $value)
+    {
+        $this->defaultMinute = $value;
+
+        return $this->withMeta([__FUNCTION__ => $value]);
     }
 }

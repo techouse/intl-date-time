@@ -82,6 +82,14 @@
                 type: [Date, Object],
                 default: null,
             },
+            defaultHour: {
+                type: Number,
+                default: null,
+            },
+            defaultMinute: {
+                type: Number,
+                default: null,
+            },
         },
 
         data() {
@@ -215,6 +223,8 @@
                         onClick: shortcutButtonFunctions,
                     }),
                 ] : [],
+                defaultHour: this.defaultHour,
+                defaultMinute: this.defaultMinute,
             }
 
             if (this.minDate) {

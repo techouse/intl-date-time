@@ -14,6 +14,8 @@
                                        :locale="locale"
                                        :error-message-locale="errorMessageLocale"
                                        :class="{errorClass: validationError}"
+                                       :default-hour="defaultHour"
+                                       :default-minute="defaultMinute"
                                        class="w-full form-control form-input form-input-bordered"
                                        @change="handleChange"
                                        @error="handleError"
@@ -157,6 +159,14 @@
 
             maxDate() {
                 return this.field.maxDate ? moment(this.field.maxDate) : null
+            },
+
+            defaultHour() {
+                return this.field.defaultHour || 12
+            },
+
+            defaultMinute() {
+                return this.field.defaultMinute || 0
             },
         },
 

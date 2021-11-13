@@ -162,11 +162,11 @@
             },
 
             defaultHour() {
-                return this.field.defaultHour || 12
+                return this.field.defaultHour ?? 12
             },
 
             defaultMinute() {
-                return this.field.defaultMinute || 0
+                return this.field.defaultMinute ?? 0
             },
         },
 

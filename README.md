@@ -155,6 +155,18 @@ class User extends Resource
                      * NOTE: The timeFormat option has precedence over withTimeShort.
                      */
                     ->withTimeShort(),
+
+            DateTime::make(__('Time of reservation'), 'deleted_at')
+                    /**
+                     * Set default hour of time selector
+                     */
+                    ->defaultHour(9),
+
+            DateTime::make(__('Time of reservation'), 'uploaded_at')
+                    /**
+                     * Set default minute of time selector
+                     */
+                    ->defaultMinute(30),
         ];
     }
 

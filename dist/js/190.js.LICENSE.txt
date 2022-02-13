@@ -1,6 +1,6 @@
 /*!
- * Vue.js v2.6.12
- * (c) 2014-2020 Evan You
+ * Vue.js v2.6.14
+ * (c) 2014-2021 Evan You
  * Released under the MIT License.
  */
 
@@ -26,7 +26,7 @@ PERFORMANCE OF THIS SOFTWARE.
         \**********************/
 
 /**
-  * vee-validate v3.4.5
-  * (c) 2020 Abdelrahman Awad
+  * vee-validate v3.4.14
+  * (c) 2021 Abdelrahman Awad
   * @license MIT
   */

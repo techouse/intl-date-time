@@ -2,23 +2,24 @@
     <default-field :field="field" :errors.sync="errors" :show-help-text="showHelpText">
         <template slot="field">
             <div class="flex items-center">
-                <intl-date-time-picker :field="field"
-                                       :value="localizedValue"
-                                       :date-format="dateFormat"
-                                       :time-format="timeFormat"
-                                       :enable-time="enableTime"
-                                       :enable-seconds="enableSeconds"
-                                       :min-date="minDate"
-                                       :max-date="maxDate"
-                                       :placeholder="placeholder"
-                                       :locale="locale"
-                                       :error-message-locale="errorMessageLocale"
-                                       :class="{errorClass: validationError}"
-                                       :default-hour="defaultHour"
-                                       :default-minute="defaultMinute"
-                                       class="w-full form-control form-input form-input-bordered"
-                                       @change="handleChange"
-                                       @error="handleError"
+                <intl-date-time-picker
+                    :field="field"
+                    :value="localizedValue"
+                    :date-format="dateFormat"
+                    :time-format="timeFormat"
+                    :enable-time="enableTime"
+                    :enable-seconds="enableSeconds"
+                    :min-date="minDate"
+                    :max-date="maxDate"
+                    :placeholder="placeholder"
+                    :locale="locale"
+                    :error-message-locale="errorMessageLocale"
+                    :class="{errorClass: validationError}"
+                    :default-hour="defaultHour"
+                    :default-minute="defaultMinute"
+                    class="w-full form-control form-input form-input-bordered"
+                    @change="handleChange"
+                    @error="handleError"
                 />
                 <span v-if="field.displayUserTimeZone" class="text-80 text-sm ml-2">({{ __(userTimezone) }})</span>
             </div>
@@ -61,8 +62,7 @@
                 return "UTC"
             },
 
-            userTimezone()
-            {
+            userTimezone() {
                 if (this.field.userTimeZone) {
                     return this.field.userTimeZone
                 }
@@ -170,6 +170,12 @@
             },
         },
 
+        mounted() {
+          Nova.$on(`${this.field.attribute  }-value`, (value) => {
+            this.localizedValue = value
+          })
+        },
+
         methods: {
             /**
              * Set the initial value for the field
@@ -216,12 +222,6 @@
                 this.$set(this, "validationErrors", new Errors(errors))
                 this.$set(this, "validationError", true)
             },
-        },
-
-        mounted() {
-          Nova.$on(this.field.attribute + '-value', value => {
-            this.localizedValue = value
-          })
         },
     }
 </script>

@@ -1,14 +1,15 @@
 <template>
-    <input :ref="refName"
-           v-mask="maskFormat"
-           :disabled="field.readonly"
-           :dusk="field.attribute"
-           :class="{'!cursor-not-allowed': field.readonly}"
-           :value="value"
-           :name="field.name"
-           :placeholder="placeholder"
-           type="text"
-           :required="field.required || false"
+    <input
+        :ref="refName"
+        v-mask="maskFormat"
+        :disabled="field.readonly"
+        :dusk="field.attribute"
+        :class="{'!cursor-not-allowed': field.readonly}"
+        :value="value"
+        :name="field.name"
+        :placeholder="placeholder"
+        type="text"
+        :required="field.required || false"
     >
 </template>
 
@@ -169,7 +170,7 @@
                 ...(this.required ? [] : [
                     {
                         label: this.__("Clear"),
-                    }
+                    },
                 ]),
             ]
 
@@ -194,7 +195,7 @@
                                 break
                         }
                         fp.setDate(date)
-                    }
+                    },
                 ] : []),
 
                 ...(this.required ? [] : [
@@ -242,8 +243,8 @@
             this.$nextTick(() => {
                 this.flatpickr = flatpickr(this.$refs[this.refName], config)
             })
-			
-            Nova.$on(this.field.attribute + '-value', value => {
+
+            Nova.$on(`${this.field.attribute  }-value`, (value) => {
               this.flatpickr.setDate(value)
               this.onChange([], value)
             })

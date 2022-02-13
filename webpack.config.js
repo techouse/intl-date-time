@@ -1,17 +1,16 @@
-const path                    = require("path"),
-      outputPath              = path.resolve(__dirname, "dist"),
-      { CleanWebpackPlugin }  = require("clean-webpack-plugin"),
-      MiniCssExtractPlugin    = require("mini-css-extract-plugin"),
-      Fiber                   = require("fibers"),
-      { VueLoaderPlugin }     = require("vue-loader"),
-      OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin"),
-      TerserPlugin            = require("terser-webpack-plugin"),
-      ManifestPlugin          = require("webpack-manifest-plugin"),
-      env                     = process.env.NODE_ENV,
-      isWatch                 = process.env.npm_lifecycle_event === "watch",
-      sourceMap               = env !== "production",
-      production              = env === "production",
-      webpack                 = require("webpack")
+const path                      = require("path"),
+      outputPath                = path.resolve(__dirname, "dist"),
+      { CleanWebpackPlugin }    = require("clean-webpack-plugin"),
+      MiniCssExtractPlugin      = require("mini-css-extract-plugin"),
+      { VueLoaderPlugin }       = require("vue-loader"),
+      CssMinimizerPlugin        = require("css-minimizer-webpack-plugin"),
+      TerserPlugin              = require("terser-webpack-plugin"),
+      { WebpackManifestPlugin } = require("webpack-manifest-plugin"),
+      env                       = process.env.NODE_ENV,
+      isWatch                   = process.env.npm_lifecycle_event === "watch",
+      sourceMap                 = env !== "production",
+      production                = env === "production",
+      webpack                   = require("webpack")
 
 const config = {
     mode: env,
@@ -27,7 +26,6 @@ const config = {
         publicPath: "/nova-vendor/intl-date-time/",
         filename: "js/[name].js",
         chunkFilename: "js/[name].js",
-        jsonpFunction: "wpJsonpIntlDateTime"
     },
     optimization: {},
     resolve: {
@@ -35,13 +33,15 @@ const config = {
             "vue$": "vue/dist/vue.esm.js"
         },
         extensions: ["*", ".js", ".vue", ".json"],
-        modules: ["./node_modules",
-                  "./resources/js/components",]
+        modules: [
+            "./node_modules",
+            "./resources/js/components",
+        ],
     },
     stats: {
         colors: true
     },
-    devtool: sourceMap ? "cheap-module-eval-source-map" : undefined,
+    devtool: sourceMap ? "eval-cheap-module-source-map" : undefined,
     module: {
         rules: [
             {
@@ -66,14 +66,13 @@ const config = {
                         }
                     },
                     { loader: "postcss-loader", options: { sourceMap } },
-                    "resolve-url-loader",
+                    { loader: "resolve-url-loader", options: { sourceMap } },
                     {
                         loader: "sass-loader",
                         options: {
                             sourceMap,
                             implementation: require("sass"),
                             sassOptions: {
-                                fiber: Fiber,
                                 indentWidth: 4,
                                 includePaths: [path.resolve(__dirname, "resources/scss")],
                             },
@@ -90,7 +89,7 @@ const config = {
             filename: "css/[name].css",
             chunkFilename: "css/[name].css"
         }),
-        new ManifestPlugin({
+        new WebpackManifestPlugin({
             fileName: "mix-manifest.json"
         })
     ]
@@ -98,10 +97,10 @@ const config = {
 
 if (production) {
     config.optimization.minimizer = [
-        new OptimizeCSSAssetsPlugin(),
+        new CssMinimizerPlugin(),
         new TerserPlugin({
-            cache: true,
             parallel: true,
+            extractComments: true,
         }),
     ]
 }

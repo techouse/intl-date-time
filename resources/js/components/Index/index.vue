@@ -38,8 +38,7 @@
                 return "UTC"
             },
 
-            userTimezone()
-            {
+            userTimezone() {
                 if (this.field.userTimeZone) {
                     return this.field.userTimeZone
                 }

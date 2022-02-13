@@ -1,12 +1,11 @@
 {
-  "vendors~detail-intl-date-time~form-intl-date-time~index-intl-date-time.js": "/nova-vendor/intl-date-time/js/vendors~detail-intl-date-time~form-intl-date-time~index-intl-date-time.js",
-  "date_format_rule.js": "/nova-vendor/intl-date-time/js/date_format_rule.js",
-  "detail-intl-date-time.js": "/nova-vendor/intl-date-time/js/detail-intl-date-time.js",
   "field.css": "/nova-vendor/intl-date-time/css/field.css",
   "field.js": "/nova-vendor/intl-date-time/js/field.js",
+  "index-intl-date-time.js": "/nova-vendor/intl-date-time/js/index-intl-date-time.js",
+  "detail-intl-date-time.js": "/nova-vendor/intl-date-time/js/detail-intl-date-time.js",
   "form-intl-date-time.css": "/nova-vendor/intl-date-time/css/form-intl-date-time.css",
   "form-intl-date-time.js": "/nova-vendor/intl-date-time/js/form-intl-date-time.js",
-  "index-intl-date-time.js": "/nova-vendor/intl-date-time/js/index-intl-date-time.js",
+  "date_format_rule.js": "/nova-vendor/intl-date-time/js/date_format_rule.js",
   "validation_locales/ar-json.js": "/nova-vendor/intl-date-time/js/validation_locales/ar-json.js",
   "validation_locales/az-json.js": "/nova-vendor/intl-date-time/js/validation_locales/az-json.js",
   "validation_locales/bd-json.js": "/nova-vendor/intl-date-time/js/validation_locales/bd-json.js",
@@ -57,8 +56,7 @@
   "validation_locales/vi-json.js": "/nova-vendor/intl-date-time/js/validation_locales/vi-json.js",
   "validation_locales/zh_CN-json.js": "/nova-vendor/intl-date-time/js/validation_locales/zh_CN-json.js",
   "validation_locales/zh_TW-json.js": "/nova-vendor/intl-date-time/js/validation_locales/zh_TW-json.js",
-  "vendors~date_format_rule.js": "/nova-vendor/intl-date-time/js/vendors~date_format_rule.js",
-  "vendors~form-intl-date-time.js": "/nova-vendor/intl-date-time/js/vendors~form-intl-date-time.js",
-  "js/vendors~detail-intl-date-time~form-intl-date-time~index-intl-date-time.js.LICENSE.txt": "/nova-vendor/intl-date-time/js/vendors~detail-intl-date-time~form-intl-date-time~index-intl-date-time.js.LICENSE.txt",
-  "js/vendors~form-intl-date-time.js.LICENSE.txt": "/nova-vendor/intl-date-time/js/vendors~form-intl-date-time.js.LICENSE.txt"
+  "js/3118.js": "/nova-vendor/intl-date-time/js/3118.js",
+  "js/9778.js": "/nova-vendor/intl-date-time/js/9778.js",
+  "js/190.js": "/nova-vendor/intl-date-time/js/190.js"
 }

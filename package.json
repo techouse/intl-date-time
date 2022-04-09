@@ -45,7 +45,7 @@
         "date-fns": "^2.16.1",
         "flatpickr": "^4.6.6",
         "laravel-nova": "^1.4.1",
-        "moment": "^2.27.0",
+        "moment": "^2.29.2",
         "shortcut-buttons-flatpickr": "^0.4.0",
         "vee-validate": "^3.3.11",
         "vue": "^2.6.12",
